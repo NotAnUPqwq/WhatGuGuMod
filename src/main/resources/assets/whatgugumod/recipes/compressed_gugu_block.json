@@ -1,0 +1,23 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "RR",
+        "RR"
+    ],
+    
+    "key":
+    {
+        "R":
+        {
+            "item": "whatgugumod:compressed_gugu"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:compressed_gugu_block",
+        "count": 1
+    }
+}

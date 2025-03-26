@@ -1,0 +1,18 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+    
+    "ingredients": 
+    [
+ 
+    {
+      "item": "whatgugumod:coal_gugu_block"
+    }
+ 
+    ],
+ 
+    "result": 
+    {
+        "item": "whatgugumod:coal_gugu",
+        "count": 4
+    }
+}

@@ -1,0 +1,18 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+    
+    "ingredients": 
+    [
+ 
+    {
+      "item": "whatgugumod:octuple_compressed_gugu"
+    }
+ 
+    ],
+ 
+    "result": 
+    {
+        "item": "whatgugumod:septuple_compressed_gugu",
+        "count": 9
+    }
+}

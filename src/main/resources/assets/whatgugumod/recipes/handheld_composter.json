@@ -1,0 +1,30 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "R R",
+        "RGR",
+        "RRR"
+    ],
+    
+    "key":
+    {
+        "R":
+        {
+			"ore" : "slabWood",
+			"type": "forge:ore_dict"
+        },
+        
+        "G":
+        {
+			"item": "whatgugumod:surprised_gugu"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:handheld_composter",
+        "count": 1
+    }
+}

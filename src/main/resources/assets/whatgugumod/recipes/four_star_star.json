@@ -1,0 +1,24 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        " R ",
+        "RRR",
+        " R "
+    ],
+    
+    "key":
+    {
+        "R":
+        {
+            "item": "whatgugumod:four_star_coin"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:four_star_star",
+        "count": 1
+    }
+}

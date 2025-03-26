@@ -1,0 +1,29 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "G",
+        "G",
+        "S"
+    ],
+    
+    "key":
+    {
+        "G":
+        {
+            "item": "whatgugumod:octuple_compressed_gugu"
+        },
+        
+        "S":
+        {
+            "item": "whatgugumod:octuple_compressed_gugu_stick"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:octuple_compressed_gugu_sword",
+        "count": 1
+    }
+}

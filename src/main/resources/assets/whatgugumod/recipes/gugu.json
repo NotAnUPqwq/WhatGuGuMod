@@ -1,0 +1,22 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+    
+    "ingredients": 
+    [
+ 
+    {
+      "item": "minecraft:feather"
+    },
+ 
+    {
+      "item": "minecraft:chicken"
+    }
+ 
+    ],
+ 
+    "result": 
+    {
+        "item": "whatgugumod:gugu",
+        "count": 1
+    }
+}

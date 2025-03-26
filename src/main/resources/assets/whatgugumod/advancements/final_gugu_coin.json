@@ -1,0 +1,34 @@
+{
+  "parent": "whatgugumod:first_gugu_of_world",
+  "display": {
+    "icon": {
+      "item": "whatgugumod:final_gugu_coin"
+    },
+    "title": {
+      "translate": "advancements.whatgugumod.final.title"
+    },
+    "description": {
+      "translate": "advancements.whatgugumod.final.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "obtained_gugu": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "whatgugumod:final_gugu_coin"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "obtained_gugu"
+    ]
+  ]
+}

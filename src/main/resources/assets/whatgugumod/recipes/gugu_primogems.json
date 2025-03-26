@@ -1,0 +1,38 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+    
+    "ingredients": 
+    [
+ 
+    {
+      "item": "whatgugumod:gugumun_note"
+    },
+ 
+    {
+      "item": "whatgugumod:gugumun_note"
+    },
+ 
+    {
+      "item": "whatgugumod:gugumun_note"
+    },
+ 
+    {
+      "item": "whatgugumod:orirock_block"
+    },
+ 
+    {
+      "item": "whatgugumod:orirock_block"
+    },
+ 
+    {
+      "item": "whatgugumod:surprised_gugu"
+    }
+ 
+    ],
+ 
+    "result": 
+    {
+        "item": "whatgugumod:gugu_primogems",
+        "count": 3
+    }
+}

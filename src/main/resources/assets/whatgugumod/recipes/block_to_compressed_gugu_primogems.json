@@ -1,0 +1,18 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+    
+    "ingredients": 
+    [
+ 
+    {
+      "item": "whatgugumod:compressed_gugu_primogems_block"
+    }
+ 
+    ],
+ 
+    "result": 
+    {
+        "item": "whatgugumod:compressed_gugu_primogems",
+        "count": 4
+    }
+}

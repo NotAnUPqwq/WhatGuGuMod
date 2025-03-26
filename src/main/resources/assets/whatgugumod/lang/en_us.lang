@@ -1,0 +1,161 @@
+// items
+item.piece_of_raw_trim.name=Piece Of Raw ZhiYin
+item.raw_trim.name=Raw ZhiYin
+item.cooked_trim.name=Cooked ZhiYin
+item.compressed_raw_trim.name=Compressed Raw ZhiYin
+item.compressed_cooked_trim.name=Compressed Cooked ZhiYin
+
+item.gugu_ingot.name=GuGu Ingot
+item.raw_gugu_steel_ingot.name=Raw GuGu Steel Ingot
+item.gugu_steel_ingot.name=GuGu Steel Ingot
+item.gugu_stick.name=GuGu Stick
+item.octuple_compressed_gugu_stick.name=Octuple Compressed GuGu Stick
+
+item.gugu.name=GuGu
+item.compressed_gugu.name=Compressed GuGu
+item.double_compressed_gugu.name=Double Compressed GuGu
+item.triple_compressed_gugu.name=Triple Compressed GuGu
+item.quadruple_compressed_gugu.name=Quadruple Compressed GuGu
+item.quintuple_compressed_gugu.name=Quintuple Compressed GuGu
+item.sextuple_compressed_gugu.name=Sextuple Compressed GuGu
+item.septuple_compressed_gugu.name=Septuple Compressed GuGu
+item.octuple_compressed_gugu.name=Octuple Compressed GuGu
+
+item.surprised_gugu.name=Surprised GuGu
+item.piece_of_gugu.name=Piece Of GuGu
+item.coal_gugu.name=Coal GuGu
+item.piece_of_coal_gugu.name=Piece Of Coal GuGu
+item.handheld_composter.name=Handheld Composter
+item.crafting_gugu.name=Crafting GuGu
+item.gugu_handheld_chest.name=GuGu Handheld Chest
+item.gugu_handheld_bigger_chest.name=GuGu Handheld Bigger Chest
+item.gugu_handheld_biggest_chest.name=GuGu Handheld Biggest Chest
+
+item.gugu_egg.name=GuGu Egg
+
+// tools
+item.gugu_sword.name=GuGu Sword
+item.gugu_axe.name=GuGu Axe
+item.gugu_pickaxe.name=GuGu Pickaxe
+item.gugu_hoe.name=GuGu Hoe
+item.gugu_spade.name=GuGu Shovel
+
+item.octuple_compressed_gugu_sword.name=Octuple Compressed GuGu Sword
+item.octuple_compressed_gugu_pickaxe.name=Octuple Compressed GuGu Pickaxe
+
+//armors
+item.gugu_helmet.name=GuGu Helmet
+item.gugu_chestplate.name=GuGu Chestplate
+item.gugu_leggings.name=GuGu Leggings
+item.gugu_boots.name=GuGu Boots
+
+// blocks
+tile.raw_trim_block.name=Raw ZhiYin Block
+tile.cooked_trim_block.name=Cooked ZhiYin Block
+tile.compressed_raw_trim_block.name=Compressed Raw ZhiYin Block
+tile.compressed_cooked_trim_block.name=Compressed Cooked ZhiYin Block
+tile.gugu_block.name=GuGu Block
+tile.compressed_gugu_block.name=Compressed GuGu Block
+tile.coal_gugu_block.name=Coal GuGu Block
+
+// ores
+tile.raw_trim_ore.name=Raw ZhiYin Ore
+tile.gugu_ore.name=GuGu Ore
+tile.coal_gugu_ore.name=Coal GuGu Ore
+
+// tabs
+itemGroup.gugu_tab=WhatGuGuMod
+itemGroup.gugu_tab_creative=WhatGuGuMod for Creative
+
+// entities
+entity.entity_gugu.name=GuGu
+
+// advancements
+advancements.whatgugumod.root.title=WhatGuGuMod
+advancements.whatgugumod.root.description=GuGu, get daze⭐
+advancements.whatgugumod.final.title=Finish
+advancements.whatgugumod.final.description=Thank you for playing my mod qwq! But it's over?
+
+// enchantments
+enchantment.constellation=Constellation
+
+// tooltip
+tooltip.whatgugumod.extra_speed=speed
+tooltip.whatgugumod.true_damage=True Damage
+
+// added by python, must leave empty at last line!!!
+item.gugu_steel_axe.name=Gugu Steel Axe 
+item.gugu_steel_pickaxe.name=Gugu Steel Pickaxe 
+item.gugu_steel_spade.name=Gugu Steel Shovel 
+item.gugu_steel_sword.name=Gugu Steel Sword 
+item.gugu_steel_hoe.name=Gugu Steel Hoe 
+item.gugu_steel_helmet.name=Gugu Steel Helmet 
+item.gugu_steel_chestplate.name=Gugu Steel Chestplate 
+item.gugu_steel_leggings.name=Gugu Steel Leggings 
+item.gugu_steel_boots.name=Gugu Steel Boots 
+item.tetris_gugu_coin.name=Tetris Gugu Coin 
+tile.white_tetris_gugu_block.name=White Tetris Gugu Block 
+tile.orange_tetris_gugu_block.name=Orange Tetris Gugu Block 
+tile.magenta_tetris_gugu_block.name=Magenta Tetris Gugu Block 
+tile.lightblue_tetris_gugu_block.name=LightBlue Tetris Gugu Block 
+tile.yellow_tetris_gugu_block.name=Yellow Tetris Gugu Block 
+tile.lime_tetris_gugu_block.name=Lime Tetris Gugu Block 
+tile.pink_tetris_gugu_block.name=Pink Tetris Gugu Block 
+tile.gray_tetris_gugu_block.name=Gray Tetris Gugu Block 
+tile.silver_tetris_gugu_block.name=Silver Tetris Gugu Block 
+tile.cyan_tetris_gugu_block.name=Cyan Tetris Gugu Block 
+tile.purple_tetris_gugu_block.name=Purple Tetris Gugu Block 
+tile.blue_tetris_gugu_block.name=Blue Tetris Gugu Block 
+tile.brown_tetris_gugu_block.name=Brown Tetris Gugu Block 
+tile.green_tetris_gugu_block.name=Green Tetris Gugu Block 
+tile.red_tetris_gugu_block.name=Red Tetris Gugu Block 
+tile.black_tetris_gugu_block.name=Black Tetris Gugu Block 
+item.cccp_gugu.name=Cccp Gugu 
+item.gugu_primogems.name=Gugu Primogems 
+tile.gugu_primogems_ore.name=Gugu Primogems Ore 
+tile.gugu_chest.name=Gugu Chest 
+tile.gugu_bigger_chest.name=Gugu Bigger Chest 
+tile.gugu_biggest_chest.name=Gugu Biggest Chest 
+item.compressed_gugu_primogems.name=Compressed Gugu Primogems 
+tile.compressed_gugu_primogems_block.name=Compressed Gugu Primogems Block 
+tile.gugu_primogems_block.name=Gugu Primogems Block 
+item.intertwined_gugu.name=Intertwined Gugu 
+item.five_star_gugu_coin.name=Five Star Gugu Coin 
+item.three_star_coin.name=Three Star Coin 
+item.four_star_coin.name=Four Star Coin 
+item.five_star_gugu.name=Five Star Gugu 
+item.four_star_gugu.name=Four Star Gugu 
+item.three_star_gugu.name=Three Star Gugu 
+item.compressed_intertwined_gugu.name=Compressed Intertwined Gugu 
+tile.orirock_block.name=Orirock Block 
+item.lightblue_paper.name=LightBlue Paper 
+item.gugumun_note.name=Gugumun Note 
+item.gugu_egg_coin.name=Gugu Egg Coin 
+item.gugu_ore_coin.name=Ore Coin 
+item.gugu_chest_coin.name=Gugu Chest Coin 
+item.gugu_sound_coin.name=Gugu Sound Coin 
+item.gugu_coin.name=Gugu Coin 
+item.coin_gugu_axe.name=Coin Gugu Axe 
+item.coin_gugu_pickaxe.name=Coin Gugu Pickaxe 
+item.coin_gugu_spade.name=Coin Gugu Shovel 
+item.coin_gugu_sword.name=Coin Gugu Sword 
+item.coin_gugu_hoe.name=Coin Gugu Hoe 
+item.coin_gugu_helmet.name=Coin Gugu Helmet 
+item.coin_gugu_chestplate.name=Coin Gugu Chestplate 
+item.coin_gugu_leggings.name=Coin Gugu Leggings 
+item.coin_gugu_boots.name=Coin Gugu Boots 
+item.gold_gugumun_note.name=Gold Gugumun Note 
+item.gold_gugu_coin.name=Gold Gugu Coin 
+item.final_gugu_coin.name=Final Gugu Coin 
+item.four_star_star.name=Four Star Star 
+item.three_star_star.name=Three Star Star 
+item.five_star_coin_gugu_axe.name=Five Star Coin Gugu Axe 
+item.five_star_coin_gugu_pickaxe.name=Five Star Coin Gugu Pickaxe 
+item.five_star_coin_gugu_spade.name=Five Star Coin Gugu Shovel 
+item.five_star_coin_gugu_sword.name=Five Star Coin Gugu Sword 
+item.five_star_coin_gugu_hoe.name=Five Star Coin Gugu Hoe 
+item.five_star_coin_gugu_helmet.name=Five Star Coin Gugu Helmet 
+item.five_star_coin_gugu_chestplate.name=Five Star Coin Gugu Chestplate 
+item.five_star_coin_gugu_leggings.name=Five Star Coin Gugu Leggings 
+item.five_star_coin_gugu_boots.name=Five Star Coin Gugu Boots 
+item.five_star_star.name=Five Star Star 

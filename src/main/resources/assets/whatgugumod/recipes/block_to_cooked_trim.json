@@ -1,0 +1,18 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+    
+    "ingredients": 
+    [
+ 
+    {
+      "item": "whatgugumod:cooked_trim_block"
+    }
+ 
+    ],
+ 
+    "result": 
+    {
+        "item": "whatgugumod:cooked_trim",
+        "count": 4
+    }
+}

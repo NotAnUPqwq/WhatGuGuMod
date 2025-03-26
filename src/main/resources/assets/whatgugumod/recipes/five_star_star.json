@@ -1,0 +1,29 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        " R ",
+        "RFR",
+        " R "
+    ],
+    
+    "key":
+    {
+        "R":
+        {
+            "item": "whatgugumod:five_star_gugu_coin"
+        },
+        
+        "F":
+        {
+            "item": "whatgugumod:final_gugu_coin"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:five_star_star",
+        "count": 1
+    }
+}

@@ -1,0 +1,18 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+    
+    "ingredients": 
+    [
+ 
+    {
+      "item": "whatgugumod:gugu"
+    }
+ 
+    ],
+ 
+    "result": 
+    {
+        "item": "whatgugumod:piece_of_gugu",
+        "count": 9
+    }
+}

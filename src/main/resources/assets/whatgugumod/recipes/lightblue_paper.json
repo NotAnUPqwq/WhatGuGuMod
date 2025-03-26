@@ -1,0 +1,29 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "PPP",
+        "PBP",
+        "PPP"
+    ],
+    
+    "key":
+    {
+        "P":
+        {
+            "item": "minecraft:paper"
+        },
+        "B":
+        {
+            "item": "minecraft:dye",
+            "data": 12
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:lightblue_paper",
+        "count": 8
+    }
+}

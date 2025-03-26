@@ -1,0 +1,18 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+    
+    "ingredients": 
+    [
+ 
+    {
+      "item": "whatgugumod:four_star_coin"
+    }
+ 
+    ],
+ 
+    "result": 
+    {
+        "item": "whatgugumod:gugu_primogems",
+        "count": 32
+    }
+}

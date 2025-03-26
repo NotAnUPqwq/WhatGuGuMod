@@ -1,0 +1,28 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "GGG",
+        "GMG",
+        "GGG"
+    ],
+    
+    "key":
+    {
+        "G":
+        {
+            "item": "minecraft:gold_block"
+        },
+        "M":
+        {
+            "item": "whatgugumod:gold_gugumun_note"
+        }
+    },
+ 
+    "result": 
+    {
+        "item": "whatgugumod:gold_gugu_coin",
+        "count": 1
+    }
+}

@@ -1,0 +1,29 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "RRR",
+        "RSR",
+        "RRR"
+    ],
+    
+    "key":
+    {
+        "R":
+        {
+            "item": "minecraft:cobblestone"
+        },
+        
+        "S":
+        {
+            "item": "whatgugumod:surprised_gugu"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:orirock_block",
+        "count": 1
+    }
+}

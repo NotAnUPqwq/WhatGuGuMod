@@ -1,0 +1,18 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+    
+    "ingredients": 
+    [
+ 
+    {
+      "item": "whatgugumod:compressed_raw_trim"
+    }
+ 
+    ],
+ 
+    "result": 
+    {
+        "item": "whatgugumod:raw_trim",
+        "count": 9
+    }
+}

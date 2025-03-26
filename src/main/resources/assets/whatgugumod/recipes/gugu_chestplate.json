@@ -1,0 +1,24 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+    	"G G",
+        "GGG",
+        "GGG"
+    ],
+    
+    "key":
+    {
+        "G":
+        {
+            "item": "whatgugumod:gugu_ingot"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:gugu_chestplate",
+        "count": 1
+    }
+}

@@ -1,0 +1,24 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "RRR",
+        "RRR",
+        "RRR"
+    ],
+    
+    "key":
+    {
+        "R":
+        {
+            "item": "whatgugumod:piece_of_raw_trim"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:raw_trim",
+        "count": 1
+    }
+}

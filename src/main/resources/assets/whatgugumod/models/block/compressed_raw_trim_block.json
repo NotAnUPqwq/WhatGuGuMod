@@ -1,0 +1,6 @@
+{
+   "parent": "block/cube_all",
+   "textures": {
+       "all": "whatgugumod:blocks/compressed_raw_trim_block"
+   }
+}

@@ -1,0 +1,23 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "R",
+        "R"
+    ],
+    
+    "key":
+    {
+        "R":
+        {
+            "item": "whatgugumod:gugu"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:gugu_stick",
+        "count": 4
+    }
+}

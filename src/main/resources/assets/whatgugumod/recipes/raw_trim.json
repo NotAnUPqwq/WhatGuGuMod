@@ -1,0 +1,41 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        " I ",
+        "RCR",
+        " Y "
+    ],
+    
+    "key":
+    {
+        "R":
+        {
+            "item": "minecraft:dye",
+            "data": 1
+        },
+        
+        "Y":
+        {
+            "item": "minecraft:dye",
+            "data": 11
+        },
+        
+        "I":
+        {
+            "item": "minecraft:iron_ingot"
+        },
+        
+        "C":
+        {
+            "item": "minecraft:chicken"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:raw_trim",
+        "count": 1
+    }
+}

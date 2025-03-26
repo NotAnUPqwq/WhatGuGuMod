@@ -1,0 +1,59 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+    
+    "ingredients": 
+    [
+ 
+    {
+      "ore" : "composterAccepted",
+      "type": "forge:ore_dict"
+    },
+    
+    {
+      "ore" : "composterAccepted",
+      "type": "forge:ore_dict"
+    },
+    
+    {
+      "ore" : "composterAccepted",
+      "type": "forge:ore_dict"
+    },
+    
+    {
+      "ore" : "composterAccepted",
+      "type": "forge:ore_dict"
+    },
+    
+    {
+      "ore" : "composterAccepted",
+      "type": "forge:ore_dict"
+    },
+    
+    {
+      "ore" : "composterAccepted",
+      "type": "forge:ore_dict"
+    },
+    
+    {
+      "ore" : "composterAccepted",
+      "type": "forge:ore_dict"
+    },
+    
+    {
+      "ore" : "composterAccepted",
+      "type": "forge:ore_dict"
+    },
+ 
+    {
+      "item": "whatgugumod:handheld_composter"
+    }
+ 
+    ],
+ 
+    "result": 
+    {
+        "item": "minecraft:dye",
+        "data": 15,
+        "count": 1
+    }
+}

@@ -1,0 +1,24 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+    	"G G",
+        "GGG",
+        "GGG"
+    ],
+    
+    "key":
+    {
+        "G":
+        {
+            "item": "whatgugumod:four_star_coin"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:coin_gugu_chestplate",
+        "count": 1
+    }
+}

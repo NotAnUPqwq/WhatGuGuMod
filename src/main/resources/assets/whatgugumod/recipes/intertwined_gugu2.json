@@ -1,0 +1,32 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "GCG",
+        "CSC",
+        "GCG"
+    ],
+    
+    "key":
+    {
+        "C":
+        {
+            "item": "whatgugumod:compressed_gugu_primogems_block"
+        },
+        "G":
+        {
+            "item": "whatgugumod:gugu_primogems_block"
+        },
+        "S":
+        {
+            "item": "whatgugumod:surprised_gugu"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:intertwined_gugu",
+        "count": 1
+    }
+}

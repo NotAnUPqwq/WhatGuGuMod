@@ -1,0 +1,22 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+    
+    "ingredients": 
+    [
+ 
+    {
+      "item": "minecraft:egg"
+    },
+ 
+    {
+      "item": "whatgugumod:gugu"
+    }
+ 
+    ],
+ 
+    "result": 
+    {
+        "item": "whatgugumod:gugu_egg",
+        "count": 1
+    }
+}

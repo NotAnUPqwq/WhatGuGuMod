@@ -1,0 +1,23 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "RR",
+        "RR"
+    ],
+    
+    "key":
+    {
+        "R":
+        {
+            "item": "whatgugumod:gugu_primogems"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:gugu_primogems_block",
+        "count": 1
+    }
+}

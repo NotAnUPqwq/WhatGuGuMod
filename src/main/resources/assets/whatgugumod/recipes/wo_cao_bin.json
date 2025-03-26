@@ -1,0 +1,22 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+    
+    "ingredients": 
+    [
+ 
+    {
+      "item": "minecraft:water_bucket"
+    },
+ 
+    {
+      "item": "whatgugumod:surprised_gugu"
+    }
+ 
+    ],
+ 
+    "result": 
+    {
+        "item": "minecraft:ice",
+        "count": 4
+    }
+}

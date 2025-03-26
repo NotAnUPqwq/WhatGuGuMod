@@ -1,0 +1,29 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "GG",
+        " S",
+        " S"
+    ],
+    
+    "key":
+    {
+        "G":
+        {
+            "item": "whatgugumod:gugu_steel_ingot"
+        },
+        
+        "S":
+        {
+            "item": "whatgugumod:gugu_stick"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:gugu_steel_hoe",
+        "count": 1
+    }
+}

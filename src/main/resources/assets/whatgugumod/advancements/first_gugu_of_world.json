@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "item": "whatgugumod:gugu"
+    },
+    "title": {
+      "translate": "advancements.whatgugumod.root.title"
+    },
+    "description": {
+      "translate": "advancements.whatgugumod.root.description"
+    },
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "obtained_gugu": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "whatgugumod:gugu"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "obtained_gugu"
+    ]
+  ]
+}

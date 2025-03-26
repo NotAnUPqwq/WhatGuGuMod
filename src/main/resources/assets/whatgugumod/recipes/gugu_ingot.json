@@ -1,0 +1,22 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+    
+    "ingredients": 
+    [
+ 
+    {
+      "item": "minecraft:iron_ingot"
+    },
+ 
+    {
+      "item": "whatgugumod:gugu"
+    }
+ 
+    ],
+ 
+    "result": 
+    {
+        "item": "whatgugumod:gugu_ingot",
+        "count": 1
+    }
+}

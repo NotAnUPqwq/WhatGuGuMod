@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+       "all": "whatgugumod:blocks/silver_tetris_gugu_block"
+    }
+}

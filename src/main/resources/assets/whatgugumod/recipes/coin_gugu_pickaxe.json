@@ -1,0 +1,29 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "GGG",
+        " S ",
+        " S "
+    ],
+    
+    "key":
+    {
+        "G":
+        {
+            "item": "whatgugumod:three_star_coin"
+        },
+        
+        "S":
+        {
+            "item": "whatgugumod:gugu_stick"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:coin_gugu_pickaxe",
+        "count": 1
+    }
+}

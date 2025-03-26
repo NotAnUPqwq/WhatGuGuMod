@@ -1,0 +1,6 @@
+{
+   "parent": "block/cube_all",
+   "textures": {
+       "all": "whatgugumod:blocks/raw_trim_ore"
+   }
+}

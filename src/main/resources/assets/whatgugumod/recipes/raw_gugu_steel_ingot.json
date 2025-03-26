@@ -1,0 +1,29 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "C C",
+        "CGC",
+        "CCC"
+    ],
+    
+    "key":
+    {
+        "C":
+        {
+            "item": "whatgugumod:piece_of_coal_gugu"
+        },
+        
+        "G":
+        {
+            "item": "whatgugumod:gugu_ingot"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:raw_gugu_steel_ingot",
+        "count": 1
+    }
+}

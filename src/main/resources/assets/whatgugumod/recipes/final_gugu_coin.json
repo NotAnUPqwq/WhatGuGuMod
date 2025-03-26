@@ -1,0 +1,50 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+    
+    "ingredients": 
+    [
+ 
+    {
+      "item": "whatgugumod:gold_gugu_coin"
+    },
+ 
+    {
+      "item": "whatgugumod:gugu_coin"
+    },
+ 
+    {
+      "item": "whatgugumod:gugu_sound_coin"
+    },
+ 
+    {
+      "item": "whatgugumod:gugu_chest_coin"
+    },
+ 
+    {
+      "item": "whatgugumod:gugu_ore_coin"
+    },
+ 
+    {
+      "item": "whatgugumod:five_star_gugu_coin"
+    },
+ 
+    {
+      "item": "whatgugumod:gugu_egg_coin"
+    },
+ 
+    {
+      "item": "whatgugumod:tetris_gugu_coin"
+    },
+ 
+    {
+      "item": "whatgugumod:surprised_gugu"
+    }
+ 
+    ],
+ 
+    "result": 
+    {
+        "item": "whatgugumod:final_gugu_coin",
+        "count": 1
+    }
+}

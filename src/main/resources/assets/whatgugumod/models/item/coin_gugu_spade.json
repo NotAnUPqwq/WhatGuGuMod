@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+       "layer0": "whatgugumod:items/coin_gugu_spade"
+    }
+}

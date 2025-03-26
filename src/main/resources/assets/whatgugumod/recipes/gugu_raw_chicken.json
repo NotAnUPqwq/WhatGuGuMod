@@ -1,0 +1,26 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+    
+    "ingredients": 
+    [
+ 
+    {
+      "item": "minecraft:cooked_chicken"
+    },
+ 
+    {
+      "item": "whatgugumod:surprised_gugu"
+    },
+ 
+    {
+      "item": "minecraft:ice"
+    }
+ 
+    ],
+ 
+    "result": 
+    {
+        "item": "minecraft:chicken",
+        "count": 1
+    }
+}

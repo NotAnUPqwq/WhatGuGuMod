@@ -1,0 +1,23 @@
+{ 
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "RR",
+        "RR"
+    ],
+    
+    "key":
+    {
+        "R":
+        {
+            "item": "whatgugumod:compressed_cooked_trim"
+        }
+    },
+    
+    "result":
+    {
+        "item": "whatgugumod:compressed_cooked_trim_block",
+        "count": 1
+    }
+}
