@@ -26,3 +26,4 @@ forge*changelog.txt
 /crash-reports
 /logs
 src/main/resources/assets/whatgugumod/MyPythonRegister.py
+src/main/resources/assets/whatgugumod/recipes/createCompressedGuGuRecipe.py
