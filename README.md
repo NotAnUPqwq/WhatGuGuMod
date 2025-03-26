@@ -6,4 +6,4 @@
 	
  你可以在 src \ main \ resources \ assets \ whatgugumod 里看到 MyPythonRegister.py
 	
- 那个文件就是这个模组唯一含有 python 的文件了 qwq
+ 那个文件就是这个模组唯一含有 python 的文件了 qwq 不要在意那些细节
