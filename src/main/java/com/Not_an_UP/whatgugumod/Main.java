@@ -3,12 +3,13 @@ package com.Not_an_UP.whatgugumod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.Not_an_UP.whatgugumod.commands.GuGuCommand;
 import com.Not_an_UP.whatgugumod.init.ModRecipes;
 import com.Not_an_UP.whatgugumod.proxy.CommonProxy;
 import com.Not_an_UP.whatgugumod.tabs.GuGuTab;
 import com.Not_an_UP.whatgugumod.tabs.GuGuTabCreative;
 import com.Not_an_UP.whatgugumod.util.Reference;
+import com.Not_an_UP.whatgugumod.util.handlers.CommandRegisterHandler;
+import com.Not_an_UP.whatgugumod.util.handlers.CraftingEventHandler;
 import com.Not_an_UP.whatgugumod.util.handlers.EnchantmentHandler;
 import com.Not_an_UP.whatgugumod.util.handlers.GuiHandler;
 import com.Not_an_UP.whatgugumod.util.handlers.OreDictHandler;
@@ -54,6 +55,7 @@ public class Main {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		MinecraftForge.EVENT_BUS.register(new EnchantmentHandler());
 		MinecraftForge.EVENT_BUS.register(new TooltipHandler());
+		MinecraftForge.EVENT_BUS.register(new CraftingEventHandler());
 	}
 	
 	@EventHandler
@@ -63,7 +65,7 @@ public class Main {
 	
 	@EventHandler // 注册了一个咕咕指令
     public static void onServerStarting(FMLServerStartingEvent event) {
-        event.registerServerCommand(new GuGuCommand());
+        CommandRegisterHandler.init(event);
     }
 	
 	public static CreativeTabs GUGU_TAB = new GuGuTab();

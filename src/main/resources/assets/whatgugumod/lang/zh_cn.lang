@@ -74,13 +74,23 @@ advancements.whatgugumod.root.title=什么咕咕模组
 advancements.whatgugumod.root.description=第一只咕咕, get daze⭐
 advancements.whatgugumod.final.title=终点
 advancements.whatgugumod.final.description=感谢你游玩什么咕咕模组！qwq但是一切都结束了吗？
+advancements.whatgugumod.gudu.title=百年咕独
+advancements.whatgugumod.gudu.description=找到咕独的密码。
+advancements.whatgugumod.gudu.finish=咕独……是什么呢？也许就是自己一个人玩mc……
+advancements.whatgugumod.gudu.wrongcipher=咕咕没有回应。
 
 // 附魔
 enchantment.constellation=命之座
 
-//工具提示
+// 工具提示
 tooltip.whatgugumod.extra_speed=挖掘速度
 tooltip.whatgugumod.true_damage=真实伤害
+
+// 书
+book.whatgugumod.eula.title=咕咕EULA
+book.whatgugumod.eula.author=咕咕
+book.whatgugumod.gudu.title=百年咕独
+book.whatgugumod.gudu.author=咕咕出版社
 
 // 用python添加的 最后一行必须留空！！！
 item.gugu_steel_axe.name=咕咕钢斧

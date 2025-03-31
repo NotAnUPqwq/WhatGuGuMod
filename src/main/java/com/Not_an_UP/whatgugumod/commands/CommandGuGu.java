@@ -9,6 +9,7 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
@@ -17,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 
-public class GuGuCommand extends CommandBase {
+public class CommandGuGu extends CommandBase {
 
 	@Override
 	public String getName() {
@@ -37,7 +38,7 @@ public class GuGuCommand extends CommandBase {
         
         sender.getEntityWorld().playSound(null, sender.getPosition(), SoundEvents.ENTITY_CHICKEN_DEATH, SoundCategory.PLAYERS, 1.0f, new Random().nextFloat()/2 + 0.8f);
         
-        if (sender instanceof EntityPlayer) {
+        if (sender instanceof EntityPlayerMP) {
         	ItemStack stack = new ItemStack(ModItems.GUGU_SOUND_COIN, UsefulFunc.randint(1, 10));
         	if (!((EntityPlayer)sender).inventory.addItemStackToInventory(stack)) {
                 // 如果物品栏已满，将物品掉落到玩家脚下
@@ -46,7 +47,7 @@ public class GuGuCommand extends CommandBase {
         }
 	}
 	
-	 @Override
+	@Override
     public int getRequiredPermissionLevel() {
         return 0; // 0 表示所有玩家都可以使用这个指令qwq
     }

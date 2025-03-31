@@ -75,6 +75,10 @@ advancements.whatgugumod.root.title=WhatGuGuMod
 advancements.whatgugumod.root.description=GuGu, get daze⭐
 advancements.whatgugumod.final.title=Finish
 advancements.whatgugumod.final.description=Thank you for playing my mod qwq! But it's over?
+advancements.whatgugumod.gudu.title=One Hundred Years of GuGuSolitude
+advancements.whatgugumod.gudu.description=Find the cipher of GuGuSolitude.
+advancements.whatgugumod.gudu.finish=What is gugusolitude? It's play Minecraft myself, I guess.
+advancements.whatgugumod.gudu.wrongcipher=GuGu didn't reply.
 
 // enchantments
 enchantment.constellation=Constellation
@@ -82,6 +86,13 @@ enchantment.constellation=Constellation
 // tooltip
 tooltip.whatgugumod.extra_speed=speed
 tooltip.whatgugumod.true_damage=True Damage
+
+// book
+book.whatgugumod.eula.title=GuGu EULA
+book.whatgugumod.eula.author=GuGu
+book.whatgugumod.gudu.title=One Hundred Years of GuGuSolitude
+book.whatgugumod.gudu.author=GuGu Publishing House
+
 
 // added by python, must leave empty at last line!!!
 item.gugu_steel_axe.name=Gugu Steel Axe 
