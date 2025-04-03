@@ -1,6 +1,5 @@
 package com.Not_an_UP.whatgugumod.commands;
 
-import com.Not_an_UP.whatgugumod.items.books.GuGuBookBase;
 import com.Not_an_UP.whatgugumod.items.books.GuGuBookHandler;
 
 import net.minecraft.command.CommandBase;
