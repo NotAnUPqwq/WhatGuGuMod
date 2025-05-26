@@ -68,6 +68,7 @@ itemGroup.gugu_tab_creative=什么咕咕模组 创造专供
 
 // 实体
 entity.entity_gugu.name=咕咕
+entity.entity_dark_gugu.name=黑化咕咕
 
 // 成就
 advancements.whatgugumod.root.title=什么咕咕模组

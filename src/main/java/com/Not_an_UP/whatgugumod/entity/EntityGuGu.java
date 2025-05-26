@@ -14,6 +14,7 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIFollowParent;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMate;
@@ -32,14 +33,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class EntityGuGu extends EntityAnimal {
@@ -110,19 +109,17 @@ public class EntityGuGu extends EntityAnimal {
 	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
     {
-		if (player.getHeldItem(hand).isEmpty()) {
-			if (this.rand.nextFloat() < 0.005) {
-				Vec3d pos = this.getPositionVector();
-				this.dropItem(ModItems.GUGU_COIN, 1);
-				world.playSound(null, this.getPosition(), SoundEvents.ENTITY_CHICKEN_AMBIENT, SoundCategory.NEUTRAL, 1.0f, 1.0f);
-				for (int i = 0; i < 10; i++) {
-		            // 随机偏移粒子的位置
-		            double offsetX = this.rand.nextDouble(); // X方向随机偏移
-		            double offsetZ = this.rand.nextDouble(); // Z方向随机偏移
-		            world.spawnParticle(EnumParticleTypes.HEART, pos.x+offsetX, pos.y+0.5, pos.z+offsetZ, 0, 5, 0);
+		if (!world.isRemote) {
+			if (player.getHeldItem(hand).isEmpty()) {
+				if (this.rand.nextFloat() < 0.005) {
+					this.dropItem(ModItems.GUGU_COIN, 1);
+					world.playSound(null, this.getPosition(), SoundEvents.ENTITY_CHICKEN_AMBIENT, SoundCategory.NEUTRAL, 1.0f, 1.0f);
+					Entity particle = new EntityHeartParticle(world);
+					particle.setPosition(posX+0.5, posY, posZ+0.5);
+					world.spawnEntity(particle);
 				}
 			}
-		}
+    	}
 		return super.processInteract(player, hand);
     }
 
@@ -130,12 +127,13 @@ public class EntityGuGu extends EntityAnimal {
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIPanic(this, 1.4D));
-        this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
-        this.tasks.addTask(3, new EntityAITempt(this, 1.0D, false, TEMPTATION_ITEMS));
-        this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
-        this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 1.0D));
-        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-        this.tasks.addTask(7, new EntityAILookIdle(this));
+        this.tasks.addTask(2, new EntityAIAvoidEntity<>(this, EntityDarkGuGu.class, 8.0F, 1.1D, 1.4D));
+        this.tasks.addTask(3, new EntityAIMate(this, 1.0D));
+        this.tasks.addTask(4, new EntityAITempt(this, 1.0D, false, TEMPTATION_ITEMS));
+        this.tasks.addTask(5, new EntityAIFollowParent(this, 1.1D));
+        this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
+        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+        this.tasks.addTask(8, new EntityAILookIdle(this));
     }
 
     public float getEyeHeight()

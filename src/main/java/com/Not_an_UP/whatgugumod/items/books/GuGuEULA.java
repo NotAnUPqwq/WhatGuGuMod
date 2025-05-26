@@ -2,6 +2,8 @@ package com.Not_an_UP.whatgugumod.items.books;
 
 import com.Not_an_UP.whatgugumod.util.Reference;
 
+import net.minecraft.util.text.TextFormatting;
+
 public class GuGuEULA extends GuGuBookBase{
 	public static final GuGuEULA INSTANCE = new GuGuEULA();
 	
@@ -79,8 +81,19 @@ public class GuGuEULA extends GuGuBookBase{
 	"<page>",
 	"协议生效日期： 2025 年 4 月 1 日",
 	"最后修订日期： 2025 年 3 月 31 日",
+	"<page>",
+	" ",
+	" ",
+	" ",
+	" ",
+	" ",
+	"（书的背后夹着一张纸条）",
+	"<page>",
+	"2025年5月26日新闻：",
+	"近期，有一些黑色的不明生物闯入了世界。",
+	"它们冒充普通的咕咕，企图吸引人类对它们抚摸",
+	"一旦它们开始被抚摸，就会" + TextFormatting.OBFUSCATED + "beiheihuagugudasandianshanghaidanshiruguoniyouhujiadehuajiubudaosandianshanghailesuoyiyidingyaoduochuanhujiaguguhenguanxinni",
 	"<page>"
-	
 		));
 	}
 }

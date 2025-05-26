@@ -69,6 +69,7 @@ itemGroup.gugu_tab_creative=WhatGuGuMod for Creative
 
 // entities
 entity.entity_gugu.name=GuGu
+entity.entity_dark_gugu.name=DarkGuGu
 
 // advancements
 advancements.whatgugumod.root.title=WhatGuGuMod

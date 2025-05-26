@@ -14,6 +14,11 @@ import net.minecraft.nbt.NBTTagList;
 
 public class UsefulFunc {
 	private static final Random r = new Random();
+	
+	public static float rand() {
+		return r.nextFloat();
+	}
+	
 	public static int randint(int bound) {
 		return r.nextInt(bound);
 	}

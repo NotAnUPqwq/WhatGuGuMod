@@ -2,6 +2,7 @@ package com.Not_an_UP.whatgugumod.world;
 
 import java.util.Random;
 
+import com.Not_an_UP.whatgugumod.entity.EntityGuGu;
 import com.Not_an_UP.whatgugumod.init.ModBlocks;
 
 import net.minecraft.block.Block;
@@ -49,9 +50,26 @@ public class ModWorldGen implements IWorldGenerator{
                 }
             }else {
             	this.generateSurface(world, random, chunkX, chunkZ, tried+1);
+            	return;
             }
         }
+        
+        if (random.nextFloat() < 0.15) { // 15%的几率生成
+        	int num = random.nextInt(2) + 2;
+        	for (int i = 0; i < num; i++) {
+        		generateGuGu(world, random, chunkX, chunkZ);
+        	}
+        }
     }
+	
+	private void generateGuGu(World world, Random random, int chunkX, int chunkZ) {
+		int x = chunkX*16 + random.nextInt(16);
+        int z = chunkZ*16 + random.nextInt(16);
+        int y = world.getHeight(x, z);
+        EntityGuGu entity = new EntityGuGu(world);
+        entity.setPosition(x + random.nextInt(16), y, z + random.nextInt(16));
+        world.spawnEntity(entity);
+	}
 	
 	private void generateOverworld(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 		if (random.nextInt(64) == 0) {
