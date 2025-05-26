@@ -126,8 +126,8 @@ public class EntityGuGu extends EntityAnimal {
     protected void initEntityAI()
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIPanic(this, 1.4D));
-        this.tasks.addTask(2, new EntityAIAvoidEntity<>(this, EntityDarkGuGu.class, 8.0F, 1.1D, 1.4D));
+        this.tasks.addTask(1, new EntityAIAvoidEntity<>(this, EntityDarkGuGu.class, 8.0F, 1.0D, 1.4D));
+        this.tasks.addTask(2, new EntityAIPanic(this, 1.4D));
         this.tasks.addTask(3, new EntityAIMate(this, 1.0D));
         this.tasks.addTask(4, new EntityAITempt(this, 1.0D, false, TEMPTATION_ITEMS));
         this.tasks.addTask(5, new EntityAIFollowParent(this, 1.1D));
