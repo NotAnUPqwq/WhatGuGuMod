@@ -24,7 +24,7 @@ public class CommandGuGuBook extends CommandBase {
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 		if (args.length != 1) 
-			throw new CommandException("用法: /gugubook <id>");
+			throw new CommandException("用法: /gugubook <id>\n所有可用的id ： " + GuGuBookHandler.BookMap.keySet().toString());
 		
 		ItemStack bookStack = GuGuBookHandler.getBook(args[0]);
 		

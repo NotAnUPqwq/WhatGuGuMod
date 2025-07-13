@@ -8,7 +8,7 @@ public class GuGuBookHandler {
 	public static final HashMap<String, GuGuBookBase> BookMap = new HashMap<String, GuGuBookBase>();
 	
 	public static void init() {
-		register(BaiNianGuDu.INSTANCE);
+		register(GuGuDiary.INSTANCE);
 		register(GuGuEULA.INSTANCE);
 	}
 

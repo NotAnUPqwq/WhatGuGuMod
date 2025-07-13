@@ -13,6 +13,7 @@ import com.Not_an_UP.whatgugumod.items.HandheldComposter;
 import com.Not_an_UP.whatgugumod.items.IntertwinedGuGu;
 import com.Not_an_UP.whatgugumod.items.ItemBase;
 import com.Not_an_UP.whatgugumod.items.ItemGuGuStar;
+import com.Not_an_UP.whatgugumod.items.ItemPenguins;
 import com.Not_an_UP.whatgugumod.items.ItemGuGu;
 import com.Not_an_UP.whatgugumod.items.SurprisedGuGu;
 import com.Not_an_UP.whatgugumod.items.armor.ArmorBase;
@@ -174,5 +175,7 @@ public class ModItems {
 	public static final Item FIVE_STAR_COIN_GUGU_CHESTPLATE = new ArmorBase("five_star_coin_gugu_chestplate", Main.GUGU_TAB, ARMOR_MATERIAL_FIVE_STAR_COIN_GUGU, 1, EntityEquipmentSlot.CHEST);
 	public static final Item FIVE_STAR_COIN_GUGU_LEGGINGS = new ArmorBase("five_star_coin_gugu_leggings", Main.GUGU_TAB, ARMOR_MATERIAL_FIVE_STAR_COIN_GUGU, 2, EntityEquipmentSlot.LEGS);
 	public static final Item FIVE_STAR_COIN_GUGU_BOOTS = new ArmorBase("five_star_coin_gugu_boots", Main.GUGU_TAB, ARMOR_MATERIAL_FIVE_STAR_COIN_GUGU, 1, EntityEquipmentSlot.FEET);
-	
+	public static final Item ITEM_PENGUINS = new ItemPenguins("item_penguins", Main.GUGU_TAB);
+	public static final Item PIECE_OF_PENGUINS = new ItemPenguins("piece_of_penguins", Main.GUGU_TAB);
+
 }

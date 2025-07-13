@@ -5,15 +5,18 @@ import javax.annotation.Nonnull;
 import com.Not_an_UP.whatgugumod.enchantment.ConstellationEnchantment;
 import com.Not_an_UP.whatgugumod.items.ItemGuGuStar;
 import com.Not_an_UP.whatgugumod.items.armor.ArmorBase;
+import com.Not_an_UP.whatgugumod.items.books.GuGuBookHandler;
 import com.Not_an_UP.whatgugumod.items.tools.IGuGuTool;
 import com.Not_an_UP.whatgugumod.util.UsefulFunc;
 
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -47,12 +50,30 @@ public class ModRecipes {
                 new ResourceLocation("whatgugumod", "constellation_recipe"), // 配方唯一标识
                 new ItemStack(ModItems.FIVE_STAR_GUGU_COIN) // 合成结果
             ).setRegistryName(new ResourceLocation("whatgugumod", "constellation_recipe"));
-        
+        IRecipe recipePenguin = new PenguinRecipe(
+                new ResourceLocation("whatgugumod", "penguin_recipe"), // 配方唯一标识
+                new ItemStack(ModItems.PIECE_OF_PENGUINS, 9) // 合成结果
+            ).setRegistryName(new ResourceLocation("whatgugumod", "penguin_recipe"));
+        IRecipe recipeCompressPenguin = new CompressPenguinRecipe(
+                new ResourceLocation("whatgugumod", "compress_penguin_recipe"), // 配方唯一标识
+                new ItemStack(ModItems.ITEM_PENGUINS) // 合成结果
+            ).setRegistryName(new ResourceLocation("whatgugumod", "compress_penguin_recipe"));
+        IRecipe recipeDiary = new DiaryRecipe(
+                new ResourceLocation("whatgugumod", "diary_recipe"), // 配方唯一标识
+                GuGuBookHandler.getBook("diary") // 合成结果
+            ).setRegistryName(new ResourceLocation("whatgugumod", "diary_recipe"));
+        eggOutput.addEnchantment(ConstellationEnchantment.INSTANCE, 6);
+        IRecipe recipeEgg = new EggRecipe(
+                new ResourceLocation("whatgugumod", "egg_recipe") // 配方唯一标识
+            ).setRegistryName(new ResourceLocation("whatgugumod", "egg_recipe"));
         // 注册配方
         event.getRegistry().register(recipeBiggerChest);
         event.getRegistry().register(recipeBiggestChest);
         event.getRegistry().register(recipeConstellation);
-    	
+        event.getRegistry().register(recipePenguin);
+        event.getRegistry().register(recipeCompressPenguin);
+        event.getRegistry().register(recipeDiary);
+        event.getRegistry().register(recipeEgg);
         /* 咕咕为批量注册配方鏖战两小时，
          * 最终还是与自己和解，使用deepseek辅助 qwq...
          * 结果强如deepseek也解决不了我的问题qwq
@@ -315,6 +336,192 @@ public class ModRecipes {
         }
 
         // 允许显示在JEI中
+        @Override
+        public boolean isDynamic() {
+            return false;
+        }
+    }
+    
+    private static class PenguinRecipe extends ShapelessOreRecipe{
+    	public PenguinRecipe(ResourceLocation group, ItemStack output) {
+			super(group, output, new ItemStack(ModItems.ITEM_PENGUINS));
+		}
+    	
+    	@Override
+        public boolean matches(InventoryCrafting inv, World world) {
+    		int count = 0;
+    		ItemStack getStack = ItemStack.EMPTY;
+    		ItemStack stack;
+    		for (int i = 0; i < inv.getSizeInventory(); i++) {
+    			stack = inv.getStackInSlot(i);
+    			if (!stack.isEmpty()) {
+    				if (++count > 1) {
+    					return false;
+    				}
+    				getStack = stack.copy();
+    			}
+    		}
+			return getStack.getItem() == ModItems.ITEM_PENGUINS;
+        }
+    	
+    	@Nonnull
+        @Override
+        public ItemStack getCraftingResult(InventoryCrafting inv) {
+    		ItemStack getStack = ItemStack.EMPTY;
+    		ItemStack output = new ItemStack(ModItems.PIECE_OF_PENGUINS, 9);
+    		for (int i = 0; i < inv.getSizeInventory(); i++) {
+    			if (!inv.getStackInSlot(i).isEmpty()) {
+    				getStack = inv.getStackInSlot(i).copy();
+    				break;
+    			}
+    		}
+			if (!UsefulFunc.getPenguinNBT(getStack).isEmpty()) {
+				output.setStackDisplayName(TextFormatting.GOLD + UsefulFunc.getPenguinNBT(getStack).getDisplayName() + TextFormatting.WHITE + output.getDisplayName());
+				UsefulFunc.setPenguinNBT(output, UsefulFunc.getPenguinNBT(getStack));
+			}
+    		
+    		return output;
+    	}
+    	
+    	// 允许显示在JEI中
+        @Override
+        public boolean isDynamic() {
+            return false;
+        }
+    }
+    
+    private static class CompressPenguinRecipe extends ShapedOreRecipe{
+    	public CompressPenguinRecipe(ResourceLocation group, ItemStack result) {
+			super(group, result,
+	                "PPP",  // 第一行 (索引0-2)
+	                "PPP",  // 第二行 (索引3-5)
+	                "PPP",  // 第三行 (索引6-8)
+	                'P', ModItems.PIECE_OF_PENGUINS);
+		}
+    	
+    	@Override
+        public boolean matches(InventoryCrafting inv, World world) {
+    		int count = 0;
+    		ItemStack getStack = ItemStack.EMPTY;
+    		ItemStack stack;
+    		for (int i = 0; i < inv.getSizeInventory(); i++) {
+    			stack = inv.getStackInSlot(i);
+    			if (!stack.isEmpty()) {
+    				count++;
+    				if (getStack.isEmpty()) {
+    					if (stack.getItem() != ModItems.PIECE_OF_PENGUINS) {
+    		    			return false;
+    					}
+    					getStack = stack.copy();
+    				}else if (stack.getItem() != getStack.getItem() | UsefulFunc.getPenguinNBT(stack).getItem() != UsefulFunc.getPenguinNBT(getStack).getItem()) {
+    					return false;
+    				}
+    			}
+    		}
+    		return (count == 9 & getStack.getItem() == ModItems.PIECE_OF_PENGUINS);
+        }
+    	
+    	@Nonnull
+        @Override
+        public ItemStack getCraftingResult(InventoryCrafting inv) {
+    		ItemStack getStack = inv.getStackInSlot(0).copy();
+    		ItemStack output = new ItemStack(ModItems.ITEM_PENGUINS, 1);
+			if (!UsefulFunc.getPenguinNBT(getStack).isEmpty()) {
+				output.setStackDisplayName(TextFormatting.GOLD + UsefulFunc.getPenguinNBT(getStack).getDisplayName() + TextFormatting.WHITE + output.getDisplayName());
+				UsefulFunc.setPenguinNBT(output, UsefulFunc.getPenguinNBT(getStack));
+	    	}
+    		return output;
+    	}
+    	
+    	// 允许显示在JEI中
+        @Override
+        public boolean isDynamic() {
+            return false;
+        }
+    }
+    
+    private static class DiaryRecipe extends ShapelessOreRecipe{
+    	public DiaryRecipe(ResourceLocation group, ItemStack output) {
+			super(group, output, new ItemStack(ModItems.GUGU), new ItemStack(Items.FEATHER), new ItemStack(Items.DYE, 1, 0));
+		}
+    	
+    	@Override
+        public boolean matches(InventoryCrafting inv, World world) {
+    		int count = 0;
+    		boolean[] getStack = new boolean[] {false,false,false};
+    		// 列表中的三项分别判断咕咕、羽毛、墨囊是否存在。
+    		ItemStack stack;
+    		
+    		for (int i = 0; i < inv.getSizeInventory(); i++) {
+    			stack = inv.getStackInSlot(i);
+    			if (!stack.isEmpty()) {
+    				if (++count > 3) {
+    					return false;
+    				}
+    				if (stack.getItem() == ModItems.GUGU) {
+    					getStack[0] = true;
+    				}else if (stack.getItem() == Items.FEATHER) {
+    					getStack[1] = true;
+    				}else if (stack.getItem() == Items.DYE &
+    						  stack.getMetadata() == 0) {
+    					getStack[2] = true;
+    				}
+    			}
+    		}
+			return (getStack[0] & getStack[1] & getStack[2]);
+        }
+    	
+    	@Nonnull
+        @Override
+        public ItemStack getCraftingResult(InventoryCrafting inv) {
+    		return GuGuBookHandler.getBook("diary");
+    	}
+    	
+    	// 允许显示在JEI中
+        @Override
+        public boolean isDynamic() {
+            return false;
+        }
+    }
+    
+    private static final ItemStack eggOutput = new ItemStack(ModItems.GUGU_EGG);
+    private static class EggRecipe extends ShapelessOreRecipe{
+    	public EggRecipe(ResourceLocation group) {
+			super(group, eggOutput, new ItemStack(ModItems.GUGU), new ItemStack(Items.EGG), new ItemStack(ModItems.GUGU_COIN));
+    	}
+    	
+    	@Override
+        public boolean matches(InventoryCrafting inv, World world) {
+    		int count = 0;
+    		boolean[] getStack = new boolean[] {false,false,false};
+    		// 列表中的两项分别判断咕咕、鸡蛋、真咕咕币是否存在。
+    		ItemStack stack;
+    		
+    		for (int i = 0; i < inv.getSizeInventory(); i++) {
+    			stack = inv.getStackInSlot(i);
+    			if (!stack.isEmpty()) {
+    				if (++count > 3) {
+    					return false;
+    				}
+    				if (stack.getItem() == ModItems.GUGU) {
+    					getStack[0] = true;
+    				}else if (stack.getItem() == Items.EGG) {
+    					getStack[1] = true;
+    				}else if (stack.getItem() == ModItems.GUGU_COIN) {
+    					getStack[2] = true;
+    				}
+    			}
+    		}
+			return (getStack[0] & getStack[1] & getStack[2]);
+        }
+    	
+    	@Nonnull
+        @Override
+        public ItemStack getCraftingResult(InventoryCrafting inv) {
+    		return eggOutput;
+    	}
+    	
+    	// 允许显示在JEI中
         @Override
         public boolean isDynamic() {
             return false;

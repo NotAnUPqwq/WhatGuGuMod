@@ -3,6 +3,8 @@ package com.Not_an_UP.whatgugumod.items.books;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.Not_an_UP.whatgugumod.Main;
+
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -53,6 +55,7 @@ public class GuGuBookBase {
 	    // 标题+作者
 	    tag.setString("title", this.title);
 	    tag.setString("author", this.author);
+	    tag.setByte("resolved", (byte)1);
 	    
 	    NBTTagList pages = new NBTTagList();
 	    for (String content : this.pages) {

@@ -2,13 +2,21 @@ package com.Not_an_UP.whatgugumod.util.handlers;
 
 import java.lang.reflect.Field;
 import java.util.Random;
+
+import com.Not_an_UP.whatgugumod.Main;
 import com.Not_an_UP.whatgugumod.items.books.GuGuBookHandler;
 
+import net.minecraft.advancements.Advancement;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -82,5 +90,28 @@ public class EventHandler {
 			event.player.inventory.addItemStackToInventory(GuGuBookHandler.getBook("eula"));
 			event.player.addTag("read_eula");
 		}
+	}
+	
+	@SubscribeEvent
+	public static void onItemCrafted(PlayerEvent.ItemCraftedEvent event) {
+//		if (event.player.world.isRemote | !(event.player instanceof EntityPlayerMP)) return;  // 只在服务端执行
+//
+//	    EntityPlayerMP player = (EntityPlayerMP) event.player;
+//	    InventoryCrafting craftMatrix = (InventoryCrafting) event.craftMatrix;  // 获取合成矩阵
+//
+//	    // 查找匹配的配方
+//	    IRecipe recipe = CraftingManager.findMatchingRecipe(craftMatrix, player.world);
+//
+//	    if (recipe != null) {
+//	        ResourceLocation recipeId = recipe.getRegistryName();  // 获取配方ID
+//	        if (recipeId.equals(new ResourceLocation("whatgugumod", "diary_recipe"))) {
+//	            // 授予成就
+//	            Advancement advancement = player.world.getMinecraftServer().getAdvancementManager()
+//	                .getAdvancement(new ResourceLocation("whatgugumod", "craft_diary"));
+//	            if (advancement != null) {
+//	                player.getAdvancements().grantCriterion(advancement, "craft_diary");
+//	            }
+//	        }
+//	    }
 	}
 }

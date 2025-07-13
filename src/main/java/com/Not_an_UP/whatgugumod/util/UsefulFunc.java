@@ -8,6 +8,7 @@ import com.Not_an_UP.whatgugumod.items.tools.IGuGuTool;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -95,5 +96,40 @@ public class UsefulFunc {
 			trueDamage = (level >= 6) ? 1.0f : 0.1f;
 		}
 		return trueDamage;
+	}
+	
+	public static ItemStack getPenguinNBT(ItemStack stack) {
+	    if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("penguin")) {
+	        return ItemStack.EMPTY; // 如果没有NBT或penguin键，返回空ItemStack
+	    }
+	    
+	    // 从 NBT 读取存储的 ItemStack
+	    NBTTagCompound tag = stack.getTagCompound().getCompoundTag("penguin");
+	    return new ItemStack(tag);
+	}
+	
+	public static void setPenguinNBT(ItemStack stack, ItemStack stackSaved) {
+		/* 把第二个ItemStack存储到第一个ItemStack的"Penguin"NBT中 */
+		if (!stack.hasTagCompound()) {
+	        stack.setTagCompound(new NBTTagCompound());
+	    }
+		
+		ItemStack getStack = stackSaved.copy();
+		getStack.setCount(1);
+		NBTTagCompound tag = getStack.writeToNBT(new NBTTagCompound());
+	
+		stack.getTagCompound().setTag("penguin", tag);
+	}
+	
+	public static int getCount(InventoryCrafting inv) {
+		/* 获取一个InventoryCrafting内的物品个数 */
+		int count = 0;
+		for (int i = 0; i < inv.getSizeInventory(); i++) {
+			ItemStack stack = inv.getStackInSlot(i);
+			if (!stack.isEmpty()){
+				count++;
+			}
+		}
+		return count;
 	}
 }

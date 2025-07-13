@@ -9,7 +9,6 @@ import com.Not_an_UP.whatgugumod.tabs.GuGuTab;
 import com.Not_an_UP.whatgugumod.tabs.GuGuTabCreative;
 import com.Not_an_UP.whatgugumod.util.Reference;
 import com.Not_an_UP.whatgugumod.util.handlers.CommandRegisterHandler;
-import com.Not_an_UP.whatgugumod.util.handlers.CraftingEventHandler;
 import com.Not_an_UP.whatgugumod.util.handlers.EnchantmentHandler;
 import com.Not_an_UP.whatgugumod.util.handlers.GuiHandler;
 import com.Not_an_UP.whatgugumod.util.handlers.OreDictHandler;
@@ -29,7 +28,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
+@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, dependencies = "required-after:forge@[14.23.5.2859,);after:roost@[1.12.2-2.0.7,)")
 public class Main {
 	@Instance
 	public static Main instance;
@@ -55,7 +54,6 @@ public class Main {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		MinecraftForge.EVENT_BUS.register(new EnchantmentHandler());
 		MinecraftForge.EVENT_BUS.register(new TooltipHandler());
-		MinecraftForge.EVENT_BUS.register(new CraftingEventHandler());
 	}
 	
 	@EventHandler

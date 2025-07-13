@@ -75,10 +75,10 @@ advancements.whatgugumod.root.title=什么咕咕模组
 advancements.whatgugumod.root.description=第一只咕咕, get daze⭐
 advancements.whatgugumod.final.title=终点
 advancements.whatgugumod.final.description=感谢你游玩什么咕咕模组！qwq但是一切都结束了吗？
-advancements.whatgugumod.gudu.title=百年咕独
-advancements.whatgugumod.gudu.description=找到咕独的密码。
-advancements.whatgugumod.gudu.finish=咕独……是什么呢？也许就是自己一个人玩mc……
-advancements.whatgugumod.gudu.wrongcipher=咕咕没有回应。
+advancements.whatgugumod.diary.title=咕咕日记
+advancements.whatgugumod.diary.description=我的日记？你从哪搞到的？！你怎么能这样！qwq
+advancements.whatgugumod.limit.title=突破极限
+advancements.whatgugumod.limit.description=尝试用咕咕模组的某个物品突破物品堆叠数量上限。（不错的尝试。）
 
 // 附魔
 enchantment.constellation=命之座
@@ -90,8 +90,8 @@ tooltip.whatgugumod.true_damage=真实伤害
 // 书
 book.whatgugumod.eula.title=咕咕EULA
 book.whatgugumod.eula.author=咕咕
-book.whatgugumod.gudu.title=百年咕独
-book.whatgugumod.gudu.author=咕咕出版社
+book.whatgugumod.diary.title=咕咕日记
+book.whatgugumod.diary.author=咕咕
 
 // 用python添加的 最后一行必须留空！！！
 item.gugu_steel_axe.name=咕咕钢斧
@@ -169,3 +169,5 @@ item.five_star_coin_gugu_chestplate.name=五星咕咕币胸甲
 item.five_star_coin_gugu_leggings.name=五星咕咕币护腿
 item.five_star_coin_gugu_boots.name=五星咕咕币靴子
 item.five_star_star.name=五星命星
+item.item_penguins.name=这一块
+item.piece_of_penguins.name=这一小块
