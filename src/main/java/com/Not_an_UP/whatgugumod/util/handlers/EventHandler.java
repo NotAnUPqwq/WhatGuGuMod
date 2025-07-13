@@ -3,20 +3,13 @@ package com.Not_an_UP.whatgugumod.util.handlers;
 import java.lang.reflect.Field;
 import java.util.Random;
 
-import com.Not_an_UP.whatgugumod.Main;
 import com.Not_an_UP.whatgugumod.items.books.GuGuBookHandler;
 
-import net.minecraft.advancements.Advancement;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;

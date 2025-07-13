@@ -3,8 +3,6 @@ package com.Not_an_UP.whatgugumod.items.books;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.Not_an_UP.whatgugumod.Main;
-
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
