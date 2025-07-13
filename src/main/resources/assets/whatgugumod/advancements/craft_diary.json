@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:written_book"
+    },
+    "title": {
+      "translate": "advancements.whatgugumod.diary.title"
+    },
+    "description": {
+      "translate": "advancements.whatgugumod.diary.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "whatgugumod:first_gugu_of_world",
+  "criteria": {
+    "craft_diary": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:written_book",
+            "nbt": "{title:\"咕咕日记\",author:\"咕咕\",resolved:1b,pages:[\"{\\\"text\\\":\\\"正经人谁写日记啊？\\\"}\"]}"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "craft_diary"
+    ]
+  ]
+}

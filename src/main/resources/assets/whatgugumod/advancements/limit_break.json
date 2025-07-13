@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "whatgugumod:item_penguins"
+    },
+    "title": {
+      "translate": "advancements.whatgugumod.limit.title"
+    },
+    "description": {
+      "translate": "advancements.whatgugumod.limit.description"
+    },
+    "frame": "challenge",  
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true 
+  },
+  "parent": "whatgugumod:first_gugu_of_world",  
+  "criteria": {
+    "custom_trigger": {
+      "trigger": "minecraft:impossible"  
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

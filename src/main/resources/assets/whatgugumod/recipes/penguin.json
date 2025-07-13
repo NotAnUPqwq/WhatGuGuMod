@@ -1,0 +1,35 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+    
+    "ingredients": 
+    [
+ 
+    {
+      "item": "whatgugumod:gugu"
+    },
+    
+    {
+      "item": "whatgugumod:gugu"
+    },
+    
+    {
+      "item": "whatgugumod:gugu"
+    },
+    
+    {
+      "item": "whatgugumod:gugu"
+    },
+    
+    {
+      "item": "minecraft:dye",
+      "data": 0
+    }
+ 
+    ],
+    
+    "result":
+    {
+        "item": "whatgugumod:item_penguins",
+        "count": 1
+    }
+}
