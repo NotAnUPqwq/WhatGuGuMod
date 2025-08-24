@@ -69,6 +69,7 @@ itemGroup.gugu_tab_creative=什么咕咕模组 创造专供
 // 实体
 entity.entity_gugu.name=咕咕
 entity.entity_dark_gugu.name=黑化咕咕
+entity.entity_fake_gugu.name=伪咕
 
 // 成就
 advancements.whatgugumod.root.title=什么咕咕模组
@@ -79,6 +80,12 @@ advancements.whatgugumod.diary.title=咕咕日记
 advancements.whatgugumod.diary.description=我的日记？你从哪搞到的？！你怎么能这样！qwq
 advancements.whatgugumod.limit.title=突破极限
 advancements.whatgugumod.limit.description=尝试用咕咕模组的某个物品突破物品堆叠数量上限。（不错的尝试。）
+advancements.whatgugumod.fakegugu.title=掀起你的盖头来
+advancements.whatgugumod.fakegugu.description=用右键揭开一只疑似咕咕的生物的伪装。
+advancements.whatgugumod.egg.title=咕咕咕咕蛋
+advancements.whatgugumod.egg.description=获得一颗咕咕蛋，嗯，咕咕蛋qwq
+advancements.whatgugumod.cooked_egg.title=煮……咕咕蛋？
+advancements.whatgugumod.cooked_egg.description=qwq……
 
 // 附魔
 enchantment.constellation=命之座
@@ -89,9 +96,11 @@ tooltip.whatgugumod.true_damage=真实伤害
 
 // 书
 book.whatgugumod.eula.title=咕咕EULA
-book.whatgugumod.eula.author=咕咕
+book.whatgugumod.eula.author=咕咕Not_an_UP
 book.whatgugumod.diary.title=咕咕日记
-book.whatgugumod.diary.author=咕咕
+book.whatgugumod.diary.author=咕咕Not_an_UP
+book.whatgugumod.guide.title=咕咕合成指南
+book.whatgugumod.guide.author=咕咕Not_an_UP
 
 // 用python添加的 最后一行必须留空！！！
 item.gugu_steel_axe.name=咕咕钢斧
@@ -171,3 +180,6 @@ item.five_star_coin_gugu_boots.name=五星咕咕币靴子
 item.five_star_star.name=五星命星
 item.item_penguins.name=这一块
 item.piece_of_penguins.name=这一小块
+item.gugu_heart.name=咕咕心脏
+item.cooked_gugu_egg.name=煮咕咕蛋
+item.gugu_egg_shell.name=咕咕蛋壳

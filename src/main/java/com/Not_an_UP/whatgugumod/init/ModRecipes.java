@@ -32,6 +32,7 @@ public class ModRecipes {
 		
 		GameRegistry.addSmelting(ModItems.RAW_TRIM, new ItemStack(ModItems.COOKED_TRIM), 0.35f);
 		GameRegistry.addSmelting(ModItems.RAW_GUGU_STEEL_INGOT, new ItemStack(ModItems.GUGU_STEEL_INGOT), 0.35f);
+		GameRegistry.addSmelting(ModItems.GUGU_EGG, new ItemStack(ModItems.COOKED_GUGU_EGG), 0.35f);
 		
 	}
 	
@@ -62,6 +63,12 @@ public class ModRecipes {
                 new ResourceLocation("whatgugumod", "diary_recipe"), // 配方唯一标识
                 GuGuBookHandler.getBook("diary") // 合成结果
             ).setRegistryName(new ResourceLocation("whatgugumod", "diary_recipe"));
+        IRecipe recipeIntertwinedGuGu = new IntertwinedGuGuRecipe(
+                new ResourceLocation("whatgugumod", "intertwined_gugu_recipe"), // 配方唯一标识
+                new ItemStack(ModItems.INTERTWINED_GUGU) // 合成结果
+            ).setRegistryName(new ResourceLocation("whatgugumod", "diary_recipe"));
+        
+        
         eggOutput.addEnchantment(ConstellationEnchantment.INSTANCE, 6);
         IRecipe recipeEgg = new EggRecipe(
                 new ResourceLocation("whatgugumod", "egg_recipe") // 配方唯一标识
@@ -74,12 +81,34 @@ public class ModRecipes {
         event.getRegistry().register(recipeCompressPenguin);
         event.getRegistry().register(recipeDiary);
         event.getRegistry().register(recipeEgg);
+        event.getRegistry().register(recipeIntertwinedGuGu);
         /* 咕咕为批量注册配方鏖战两小时，
          * 最终还是与自己和解，使用deepseek辅助 qwq...
          * 结果强如deepseek也解决不了我的问题qwq
          * 你知道我最后怎么解决的吗？
          * 用python写批量生成配方的代码啦~*/
     }
+	
+//	private static class MyRecipe extends ShapelessOreRecipe{
+//    	public MyRecipe(ResourceLocation group, ItemStack output) {
+//			super(group, output, new ItemStack(ModItems.ITEM_PENGUINS));
+//		}
+//    	
+//    	@Override
+//        public boolean matches(InventoryCrafting inv, World world) {
+//    	}
+//    	
+//    	@Nonnull
+//        @Override
+//        public ItemStack getCraftingResult(InventoryCrafting inv) {
+//    	}
+//    	
+//    	// 不允许显示在JEI中
+//        @Override
+//        public boolean isDynamic() {
+//            return false;
+//        }
+//    }
 	
 	private static class ConstellationRecipe extends ShapelessOreRecipe{
 		public ConstellationRecipe(ResourceLocation group, ItemStack output, Object... ingredients) {
@@ -487,32 +516,30 @@ public class ModRecipes {
     private static final ItemStack eggOutput = new ItemStack(ModItems.GUGU_EGG);
     private static class EggRecipe extends ShapelessOreRecipe{
     	public EggRecipe(ResourceLocation group) {
-			super(group, eggOutput, new ItemStack(ModItems.GUGU), new ItemStack(Items.EGG), new ItemStack(ModItems.GUGU_COIN));
+			super(group, eggOutput, new ItemStack(ModItems.GUGU_EGG), new ItemStack(ModItems.GUGU_COIN));
     	}
     	
     	@Override
         public boolean matches(InventoryCrafting inv, World world) {
     		int count = 0;
-    		boolean[] getStack = new boolean[] {false,false,false};
-    		// 列表中的两项分别判断咕咕、鸡蛋、真咕咕币是否存在。
+    		boolean[] getStack = new boolean[] {false,false};
+    		// 列表中的两项分别判断咕咕蛋、真咕咕币是否存在。
     		ItemStack stack;
     		
     		for (int i = 0; i < inv.getSizeInventory(); i++) {
     			stack = inv.getStackInSlot(i);
     			if (!stack.isEmpty()) {
-    				if (++count > 3) {
+    				if (++count > 2) {
     					return false;
     				}
-    				if (stack.getItem() == ModItems.GUGU) {
+    				if (stack.getItem() == ModItems.GUGU_EGG) {
     					getStack[0] = true;
-    				}else if (stack.getItem() == Items.EGG) {
-    					getStack[1] = true;
     				}else if (stack.getItem() == ModItems.GUGU_COIN) {
-    					getStack[2] = true;
+    					getStack[1] = true;
     				}
     			}
     		}
-			return (getStack[0] & getStack[1] & getStack[2]);
+			return (getStack[0] & getStack[1]);
         }
     	
     	@Nonnull
@@ -521,12 +548,64 @@ public class ModRecipes {
     		return eggOutput;
     	}
     	
-    	// 允许显示在JEI中
         @Override
         public boolean isDynamic() {
             return false;
         }
     }
+    
+	private static class IntertwinedGuGuRecipe extends ShapelessOreRecipe{
+		public IntertwinedGuGuRecipe(ResourceLocation group, ItemStack result) {
+			super(group, result, ModItems.GUGU_PRIMOGEMS);
+		}
+		
+		@Override
+	    public boolean matches(InventoryCrafting inv, World world) {
+			int count = 0;
+			for (int i = 0; i < inv.getSizeInventory(); i++) {
+				ItemStack getStack = inv.getStackInSlot(i);
+				if (!getStack.isEmpty()) {
+					int getcount = countPrimogem(getStack);
+					if (getcount == 0) {
+						return false;
+					}
+					count += getcount;
+				}
+			}
+			return (count % 160 == 0);
+		}
+		
+		@Nonnull
+	    @Override
+	    public ItemStack getCraftingResult(InventoryCrafting inv) {
+			int count = 0;
+			for (int i = 0; i < inv.getSizeInventory(); i++) {
+				count += countPrimogem(inv.getStackInSlot(i));
+			}
+			ItemStack result = new ItemStack(ModItems.INTERTWINED_GUGU, count / 160);
+			return result;
+		}
+		
+		private int countPrimogem(ItemStack item) {
+			switch(item.getUnlocalizedName()) {
+			case("item.gugu_primogems"):
+				return 1;
+			case("tile.gugu_primogems_block"):
+				return 4;
+			case("item.compressed_gugu_primogems"):
+				return 9;
+			case("tile.compressed_gugu_primogems_block"):
+				return 36;
+			}
+			return 0;
+		}
+		
+		// 不允许显示在JEI中
+	    @Override
+	    public boolean isDynamic() {
+	        return false;
+	    }
+	}
     
     private static boolean matchesOreDict(ItemStack stack, String oreDict) {
         if (stack.isEmpty()) return false;

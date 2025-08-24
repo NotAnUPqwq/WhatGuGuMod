@@ -1,25 +1,46 @@
 { 
-    "type": "minecraft:crafting_shaped",
+    "type": "minecraft:crafting_shapeless",
     
-    "pattern":
+    "ingredients": 
     [
-        "C C",
-        "CGC",
-        "CCC"
-    ],
     
-    "key":
     {
-        "C":
-        {
-            "item": "whatgugumod:piece_of_coal_gugu"
-        },
-        
-        "G":
-        {
-            "item": "whatgugumod:gugu_ingot"
-        }
+        "item": "whatgugumod:piece_of_coal_gugu"
     },
+    
+    {
+        "item": "whatgugumod:piece_of_coal_gugu"
+    },
+    
+    {
+        "item": "whatgugumod:piece_of_coal_gugu"
+    },
+    
+    {
+        "item": "whatgugumod:piece_of_coal_gugu"
+    },
+    
+    {
+        "item": "whatgugumod:piece_of_coal_gugu"
+    },
+    
+    {
+        "item": "whatgugumod:piece_of_coal_gugu"
+    },
+    
+    {
+        "item": "whatgugumod:piece_of_coal_gugu"
+    },
+    
+    {
+        "item": "whatgugumod:gugu_ingot"
+    },
+    
+    {
+        "item": "whatgugumod:gugu_egg_shell"
+    }
+    
+    ],
     
     "result":
     {

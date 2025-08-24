@@ -2,6 +2,7 @@ package com.Not_an_UP.whatgugumod.commands;
 
 import java.util.Random;
 
+import com.Not_an_UP.whatgugumod.Main;
 import com.Not_an_UP.whatgugumod.init.ModItems;
 import com.Not_an_UP.whatgugumod.util.UsefulFunc;
 
@@ -33,13 +34,23 @@ public class CommandGuGu extends CommandBase {
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         BlockPos pos = sender.getPosition();
-		String message = TextFormatting.GRAY+""+TextFormatting.BOLD + sender.getName() +"在（"+ pos.getX() +","+ pos.getY() +","+ pos.getZ() +"）向全宇宙发出了咕咕叫！";
+        String message = TextFormatting.GRAY+""+TextFormatting.BOLD + sender.getName() +"在（"+ pos.getX() +","+ pos.getY() +","+ pos.getZ() +"）向全宇宙发出了咕咕叫！";
+        for (String i : args) {
+        	Main.LOGGER.info(i);
+        	Main.LOGGER.info(i.toLowerCase());
+        }
+        if (args.length == 4) {
+        	Main.LOGGER.info("args.length==4");
+        	if ( args[0].toLowerCase().equalsIgnoreCase("what") & args[1].toLowerCase().equalsIgnoreCase("can") & args[2].toLowerCase().equalsIgnoreCase("i") & args[3].toLowerCase().equalsIgnoreCase("say")) {
+        		message = TextFormatting.GOLD+""+TextFormatting.BOLD + sender.getName() +"在（"+ pos.getX() +","+ pos.getY() +","+ pos.getZ() +"）向全宇宙发出了曼巴叫！ What can I say？";
+        	}
+        }
         server.getPlayerList().sendMessage(new TextComponentString(message));
         
         sender.getEntityWorld().playSound(null, sender.getPosition(), SoundEvents.ENTITY_CHICKEN_DEATH, SoundCategory.PLAYERS, 1.0f, new Random().nextFloat()/2 + 0.8f);
         
         if (sender instanceof EntityPlayerMP) {
-        	ItemStack stack = new ItemStack(ModItems.GUGU_SOUND_COIN, UsefulFunc.randint(1, 10));
+        	ItemStack stack = new ItemStack(ModItems.GUGU_SOUND_COIN, UsefulFunc.randint(server.getEntityWorld(), 1, 10));
         	if (!((EntityPlayer)sender).inventory.addItemStackToInventory(stack)) {
                 // 如果物品栏已满，将物品掉落到玩家脚下
         		((EntityPlayer)sender).dropItem(stack, false);

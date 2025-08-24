@@ -52,6 +52,9 @@ public class FoodBase extends ItemFood implements IHasModel{
 		case ("item.compressed_cooked_trim"):
 			tooltip.add(TextFormatting.GRAY+""+TextFormatting.ITALIC + "压缩饼干？");
 			break;
+		case ("item.cooked_gugu_egg"):
+			tooltip.add(TextFormatting.GRAY+""+TextFormatting.ITALIC + "煮……蛋qwq");
+			break;
     	}
     }
 }

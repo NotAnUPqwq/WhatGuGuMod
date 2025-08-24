@@ -10,6 +10,7 @@ public class GuGuBookHandler {
 	public static void init() {
 		register(GuGuDiary.INSTANCE);
 		register(GuGuEULA.INSTANCE);
+		register(GuGuGuide.INSTANCE);
 	}
 
 	private static void register(GuGuBookBase book) {

@@ -1,5 +1,6 @@
 package com.Not_an_UP.whatgugumod.entity;
 
+import com.Not_an_UP.whatgugumod.entity.particle.EntityAngryParticle;
 import com.Not_an_UP.whatgugumod.init.ModItems;
 import com.Not_an_UP.whatgugumod.util.Reference;
 import net.minecraft.block.Block;
@@ -157,10 +158,11 @@ public class EntityDarkGuGu extends EntityMob {
 					}else {
 						this.dropItem(ModItems.COAL_GUGU, this.rand.nextInt(4)+1);
 					}
-					world.playSound(null, this.getPosition(), SoundEvents.ENTITY_CHICKEN_AMBIENT, SoundCategory.NEUTRAL, 1.0f, 0.9f + rand.nextFloat()/5);
-					Entity particle = new EntityHeartParticle(world);
+					world.playSound(null, this.getPosition(), SoundEvents.ENTITY_CHICKEN_HURT, SoundCategory.NEUTRAL, 1.0f, 0.9f + rand.nextFloat()/5);
+					Entity particle = new EntityAngryParticle(world);
 					particle.setPosition(posX-0.5, posY, posZ-0.5);
 					world.spawnEntity(particle);
+					this.attackEntityFrom(DamageSource.GENERIC, 5);
 				}
 			}
 		}

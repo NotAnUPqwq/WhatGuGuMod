@@ -1,18 +1,31 @@
 package com.Not_an_UP.whatgugumod.util.handlers;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
 import java.util.Random;
 
+import org.apache.commons.lang3.tuple.Pair;
+
+import com.Not_an_UP.whatgugumod.entity.EntityFakeGuGu;
+import com.Not_an_UP.whatgugumod.gui.GuiJumpScare;
 import com.Not_an_UP.whatgugumod.items.books.GuGuBookHandler;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
@@ -77,34 +90,164 @@ public class EventHandler {
         }
 	}
 	
-	@SubscribeEvent
+	public static final Map<EntityPlayer, Queue<Pair<String, Integer>>> messageQueues = new HashMap<>(); //new 消息+延迟
+	public static final Map<EntityPlayer, Long> playerLoginTimes = new HashMap<>();
+	public static final Map<EntityPlayer, Long> nextMessageTimes = new HashMap<>();
+	
+	public static boolean isSendingMessage(EntityPlayer player) {
+		return nextMessageTimes.get(player) != null;
+	}
+	
+    public static void sendSingleMessageLater(EntityPlayer player, int startTime, String message) {
+    	Queue<Pair<String, Integer>> messages = new LinkedList<>(Arrays.asList(
+    			Pair.of(message, 0)
+    			));
+    	sendMessageLater(player, startTime, messages);
+    }
+    
+    @SafeVarargs
+	public static void sendSomeMessageLater(EntityPlayer player, int startTime, Pair<String, Integer>... pairs) {
+    	Queue<Pair<String, Integer>> messages = new LinkedList<>();
+    	for (Pair<String, Integer> pair : pairs) {
+    		messages.add(pair);
+    	}
+    	sendMessageLater(player, startTime, messages);
+    }
+    
+    public static void sendMessageLater (EntityPlayer player, int startTime, Queue<Pair<String, Integer>> messages) {
+    	/* 使用方法参见下方函数onPlayerLoggedIn中messages的构造
+           startTime 指多少tick以后开始向玩家发送讯息，建议写成20*<秒数>的形式 */
+    	playerLoginTimes.put(player, player.world.getTotalWorldTime() + startTime);
+    	messageQueues.put(player, messages);
+        nextMessageTimes.put(player, player.world.getTotalWorldTime());
+    }
+    
+    @SubscribeEvent
 	public static void onPlayerLoggedIn (PlayerEvent.PlayerLoggedInEvent event) {
-		if (!event.player.getTags().contains("read_eula")) {
+		if (!event.player.getTags().contains("read_eula") & !event.player.world.isRemote) {
 			event.player.inventory.addItemStackToInventory(GuGuBookHandler.getBook("eula"));
+			event.player.inventory.addItemStackToInventory(GuGuBookHandler.getBook("guide"));
+			
+			/* 延迟也是用tick做单位（20tick = 1s）
+			       格式是<讯息，延迟>，注意填入的是到下一个讯息的延迟
+			       加新讯息的时候记得改延迟*/
+			Queue<Pair<String, Integer>> messages = new LinkedList<>(Arrays.asList(
+		            Pair.of(TextFormatting.YELLOW + "Not_an_UP加入了游戏", 100),      
+		            Pair.of("<Not_an_UP> 哈喽，感谢你游玩我的咕咕模组qwq", 80),      
+		            Pair.of("<Not_an_UP> 咕咕推荐单人游玩本模组qwq", 120),      
+		            Pair.of("<Not_an_UP> 主要是因为我还没测试多人模式会有哪些bug", 30),
+		            Pair.of("<Not_an_UP> qwq", 110),
+		            Pair.of("<Not_an_UP> 你手里应该有本书，随便看看就得了", 80),
+		            Pair.of("<Not_an_UP> nobody cares", 30),
+		            Pair.of("<Not_an_UP> qwq", 80),
+		            Pair.of("<Not_an_UP> 祝你玩得开心qwq", 300),
+		            Pair.of("<Not_an_UP> 沃日，谁把我退出键扣掉了", 30),
+		            Pair.of("<Not_an_UP> qwq", 300),
+		            Pair.of("<Not_an_UP> 算了，我自己去玩吧qwq", 120),
+		            Pair.of("<Not_an_UP> bro你就不用和我聊天了，我只会发qwq", 30),
+		            Pair.of("<Not_an_UP> qwq", 0)
+		        ));
+			
+			sendMessageLater(event.player, 20*20, messages);
+
 			event.player.addTag("read_eula");
 		}
 	}
 	
-	@SubscribeEvent
-	public static void onItemCrafted(PlayerEvent.ItemCraftedEvent event) {
-//		if (event.player.world.isRemote | !(event.player instanceof EntityPlayerMP)) return;  // 只在服务端执行
+	
+
+    // 玩家退出时清理多余数据
+    @SubscribeEvent
+    public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+        EntityPlayer player = (EntityPlayer) event.player;
+        messageQueues.remove(player);
+        playerLoginTimes.remove(player);
+        nextMessageTimes.remove(player);
+    }
+    
+//    @SubscribeEvent
+//    public static void onServerTick(TickEvent.ServerTickEvent event) {
+//        if (event.phase != TickEvent.Phase.END) return;
 //
-//	    EntityPlayerMP player = (EntityPlayerMP) event.player;
-//	    InventoryCrafting craftMatrix = (InventoryCrafting) event.craftMatrix;  // 获取合成矩阵
+//        Iterator<Map.Entry<EntityPlayer, Queue<Pair<String, Integer>>>> iterator = EventHandler.messageQueues.entrySet().iterator();
+//        while (iterator.hasNext()) {
+//        	Map.Entry<EntityPlayer, Queue<Pair<String, Integer>>> entry = iterator.next();
+//            EntityPlayer player = entry.getKey();
+//            Queue<Pair<String, Integer>> messages = entry.getValue();
 //
-//	    // 查找匹配的配方
-//	    IRecipe recipe = CraftingManager.findMatchingRecipe(craftMatrix, player.world);
-//
-//	    if (recipe != null) {
-//	        ResourceLocation recipeId = recipe.getRegistryName();  // 获取配方ID
-//	        if (recipeId.equals(new ResourceLocation("whatgugumod", "diary_recipe"))) {
-//	            // 授予成就
-//	            Advancement advancement = player.world.getMinecraftServer().getAdvancementManager()
-//	                .getAdvancement(new ResourceLocation("whatgugumod", "craft_diary"));
-//	            if (advancement != null) {
-//	                player.getAdvancements().grantCriterion(advancement, "craft_diary");
-//	            }
+//            // 检查是否已等待20秒（20秒 = 20*20 ticks）
+//            if (player.world.getTotalWorldTime() - EventHandler.playerLoginTimes.get(player) < 0)
+//            	continue;
+//                
+//        	// 检查距离上条消息是否超过5秒（100 ticks）
+//            if (player.world.getTotalWorldTime() < EventHandler.nextMessageTimes.get(player)) 
+//            	continue;
+//                
+//        	if (!messages.isEmpty()) {
+//        		Pair<String, Integer> messagePair = messages.poll();
+//                player.sendMessage(new TextComponentString(messagePair.getLeft()));
+//                EventHandler.nextMessageTimes.put(player, player.world.getTotalWorldTime() + messagePair.getRight());
+//            } else {
+//                iterator.remove(); // 清理垃圾这一块
+//                EventHandler.playerLoginTimes.remove(player);
+//                EventHandler.nextMessageTimes.remove(player); 
+//            }
+//        }
+//        
+//        for (EntityPlayer getPlayer : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers()) {
+//	        if (EventHandler.isSendingMessage(getPlayer))
+//	        	return;
+//	        
+//	        if (getPlayer.world.rand.nextFloat() < 0.0001) {
+//	        	switch (getPlayer.world.rand.nextInt(3)) {
+//		        	case 0:
+//		        		EventHandler.sendSingleMessageLater(getPlayer, 100, "<Not_an_UP> 不知道说什么，还是发个qwq吧");
+//		        		break;
+//		        	case 1:
+//		        		EventHandler.sendSomeMessageLater(getPlayer, 100, Pair.of("<Not_an_UP> 现在写1.12.2模组的教程实在是太少了qwq", 80),
+//		        				                                          Pair.of("<Not_an_UP> 但是AI实在是太好用了你知道吗", 30),
+//		        				                                          Pair.of("<Not_an_UP> qwq", 0));
+//		        		break;
+//		        	default:
+//		        		EventHandler.sendSingleMessageLater(getPlayer, 40, "<Not_an_UP> qwq咕咕咕");
+//		        		break;
+//	        	}
 //	        }
 //	    }
-	}
+//    }
+	
+    @SubscribeEvent
+    public static void onPlayerChat(ServerChatEvent event) {
+        if (isSendingMessage(event.getPlayer()))
+        	return;
+    	
+    	String message = event.getMessage();
+        
+        boolean isSinglePlayer = Minecraft.getMinecraft().isSingleplayer() && 
+                !Minecraft.getMinecraft().getIntegratedServer().getPublic();
+        
+        // 示例：检测特定关键词
+        if (message.contains("我喜欢你") & event.getPlayer().getTags().contains("love_gugu_qwq")) {
+        	sendSingleMessageLater(event.getPlayer(), 100, "<Not_an_UP> 哦，qwq");
+        }else if (message.contains("我喜欢你") & isSinglePlayer) {
+            sendMessageLater(event.getPlayer(), 200, new LinkedList<>(Arrays.asList(
+            		Pair.of("<Not_an_UP> 什么，竟然是在这种时候吗qwq", 120),
+            		Pair.of("<Not_an_UP> 明明我才刚来这个地方qwq就要说出这种话", 100),
+            		Pair.of("<Not_an_UP> qwq你不会只是想知道我会说什么吧", 0))));
+            event.getPlayer().addTag("love_gugu_qwq");
+        }else if (message.contains("qwq")){
+        	sendSingleMessageLater(event.getPlayer(), 20, "<Not_an_UP> qwq");
+        }else {
+        	sendSingleMessageLater(event.getPlayer(), 60, "<Not_an_UP> qwq");
+        }
+    }
+    
+	@SubscribeEvent
+    public static void onEntityRightClick(PlayerInteractEvent.EntityInteract event) {
+		if (event.getEntityPlayer().world.isRemote) {
+	        if (event.getEntityPlayer().getHeldItemMainhand().isEmpty() & event.getTarget() instanceof EntityFakeGuGu) {
+	            GuiJumpScare.trigger(); 
+	        }
+        }
+    }
 }

@@ -105,7 +105,8 @@ public class ModItems {
 	public static final ItemFood COOKED_TRIM = new FoodBase("cooked_trim", 8, 1.0f, true, Main.GUGU_TAB);
 	public static final ItemFood COMPRESSED_RAW_TRIM = new FoodBase("compressed_raw_trim", 27, 1.0f, true, Main.GUGU_TAB);
 	public static final ItemFood COMPRESSED_COOKED_TRIM = new FoodBase("compressed_cooked_trim", 72, 1.0f, true, Main.GUGU_TAB);
-
+	public static final ItemFood COOKED_GUGU_EGG = new FoodBase("cooked_gugu_egg", 3, 0.3f, true, Main.GUGU_TAB);
+	
 	//materials
 	public static final ToolMaterial MATERIAL_GUGU = EnumHelper.addToolMaterial("material_gugu", 1, 1145141919, 5.0f, 1.0f, 1);
 	public static final ArmorMaterial ARMOR_MATERIAL_GUGU = EnumHelper.addArmorMaterial("armor_material_gugu", Reference.MOD_ID + ":armor_material_gugu", 11451419, new int[] {2,4,5,2}, 1, SoundEvents.ENTITY_CHICKEN_AMBIENT, 0.25f);
@@ -116,7 +117,7 @@ public class ModItems {
 	public static final ArmorMaterial ARMOR_MATERIAL_GUGU_STEEL = EnumHelper.addArmorMaterial("armor_material_gugu_steel", Reference.MOD_ID + ":armor_material_gugu_steel", 11451419, new int[] {3,5,6,3}, 4, SoundEvents.ENTITY_CHICKEN_AMBIENT, 0.4f);
 	
 	public static final ToolMaterial MATERIAL_COIN_GUGU = EnumHelper.addToolMaterial("material_coin_gugu", 3, 1145141919, 5.0f, 1.0f, 12);
-	public static final ArmorMaterial ARMOR_MATERIAL_COIN_GUGU = EnumHelper.addArmorMaterial("armor_material_coin_gugu", Reference.MOD_ID + ":armor_material_coin_gugu", 11451419, new int[] {0,3,5,0}, 12, SoundEvents.ENTITY_CHICKEN_AMBIENT, 1.2f);
+	public static final ArmorMaterial ARMOR_MATERIAL_COIN_GUGU = EnumHelper.addArmorMaterial("armor_material_coin_gugu", Reference.MOD_ID + ":armor_material_coin_gugu", 11451419, new int[] {0,1,2,0}, 12, SoundEvents.ENTITY_CHICKEN_AMBIENT, 0.000000001f);
 
 	public static final ToolMaterial MATERIAL_FIVE_STAR_COIN_GUGU = EnumHelper.addToolMaterial("material_five_star_coin_gugu", 3, 1145141919, 8.0f, 3.0f, 20);
 	public static final ArmorMaterial ARMOR_MATERIAL_FIVE_STAR_COIN_GUGU = EnumHelper.addArmorMaterial("armor_material_five_star_coin_gugu", Reference.MOD_ID + ":armor_material_five_star_coin_gugu", 11451419, new int[] {3,6,8,3}, 20, SoundEvents.ENTITY_CHICKEN_AMBIENT, 2.0f);
@@ -177,5 +178,6 @@ public class ModItems {
 	public static final Item FIVE_STAR_COIN_GUGU_BOOTS = new ArmorBase("five_star_coin_gugu_boots", Main.GUGU_TAB, ARMOR_MATERIAL_FIVE_STAR_COIN_GUGU, 1, EntityEquipmentSlot.FEET);
 	public static final Item ITEM_PENGUINS = new ItemPenguins("item_penguins", Main.GUGU_TAB);
 	public static final Item PIECE_OF_PENGUINS = new ItemPenguins("piece_of_penguins", Main.GUGU_TAB);
-
+	public static final Item GUGU_HEART = new ItemBase("gugu_heart", Main.GUGU_TAB);
+	public static final Item GUGU_EGG_SHELL = new ItemBase("gugu_egg_shell", Main.GUGU_TAB);
 }

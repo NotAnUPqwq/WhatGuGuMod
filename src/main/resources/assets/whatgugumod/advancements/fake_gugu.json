@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "whatgugumod:coal_gugu"
+    },
+    "title": {
+      "translate": "advancements.whatgugumod.fakegugu.title"
+    },
+    "description": {
+      "translate": "advancements.whatgugumod.fakegugu.description"
+    },
+    "frame": "task",  
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false 
+  },
+  "parent": "whatgugumod:first_gugu_of_world",  
+  "criteria": {
+    "custom_trigger": {
+      "trigger": "minecraft:impossible"  
+    }
+  },
+  "rewards": {
+    "experience": 10
+  }
+}

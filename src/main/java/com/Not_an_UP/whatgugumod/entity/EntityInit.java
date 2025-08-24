@@ -6,6 +6,8 @@ import com.Not_an_UP.whatgugumod.Main;
 import com.Not_an_UP.whatgugumod.entity.intertwined_gugu.EntityIntertwinedGuGuFiveStar;
 import com.Not_an_UP.whatgugumod.entity.intertwined_gugu.EntityIntertwinedGuGuFourStar;
 import com.Not_an_UP.whatgugumod.entity.intertwined_gugu.EntityIntertwinedGuGuThreeStar;
+import com.Not_an_UP.whatgugumod.entity.particle.EntityAngryParticle;
+import com.Not_an_UP.whatgugumod.entity.particle.EntityHeartParticle;
 import com.Not_an_UP.whatgugumod.util.Reference;
 
 import net.minecraft.entity.Entity;
@@ -25,6 +27,8 @@ public class EntityInit {
 		registerEntity("entity_intertwined_gugu_four_star", EntityIntertwinedGuGuFourStar.class, 100, true);
 		registerEntity("entity_intertwined_gugu_five_star", EntityIntertwinedGuGuFiveStar.class, 100, true);
 		registerEntity("entity_heart_particle", EntityHeartParticle.class, 100);
+		registerEntity("entity_angry_particle", EntityAngryParticle.class, 100);
+		registerEntity("entity_fake_gugu", EntityFakeGuGu.class, 100, 0x999999, 0x000000);
 		
 		registerSpawn();
 	}
@@ -55,5 +59,7 @@ public class EntityInit {
 		
         EntityRegistry.addSpawn(EntityDarkGuGu.class, 40, 1, 3, EnumCreatureType.MONSTER, 
             overworld.toArray(new Biome[0]));
+        EntityRegistry.addSpawn(EntityGuGu.class, 60, 2, 4, EnumCreatureType.CREATURE, 
+                overworld.toArray(new Biome[0]));
     }
 }

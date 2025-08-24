@@ -1,17 +1,19 @@
 {
+  "parent": "whatgugumod:gugu_egg",
   "display": {
     "icon": {
-      "item": "whatgugumod:gugu"
+      "item": "whatgugumod:cooked_gugu_egg"
     },
     "title": {
-      "translate": "advancements.whatgugumod.root.title"
+      "translate": "advancements.whatgugumod.cooked_egg.title"
     },
     "description": {
-      "translate": "advancements.whatgugumod.root.description"
+      "translate": "advancements.whatgugumod.cooked_egg.description"
     },
-    "background": "whatgugumod:textures/blocks/silver_tetris_gugu_block.png",
+    "frame": "task",
     "show_toast": true,
-    "announce_to_chat": true
+    "announce_to_chat": true,
+    "hidden": false
   },
   "criteria": {
     "obtained_gugu": {
@@ -19,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "whatgugumod:gugu"
+            "item": "whatgugumod:cooked_gugu_egg"
           }
         ]
       }

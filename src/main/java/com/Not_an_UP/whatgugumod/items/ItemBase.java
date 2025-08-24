@@ -94,7 +94,7 @@ public class ItemBase extends Item implements IHasModel{
 			tooltip.add(TextFormatting.GRAY+""+TextFormatting.ITALIC + "玩俄罗斯咕块的奖励！");
 			break;
 		case ("item.gugu_primogems"):
-			tooltip.add(TextFormatting.GRAY+""+TextFormatting.ITALIC + "稀有货币，160咕咕原石可以来一发大的！");
+			tooltip.add(TextFormatting.GRAY+""+TextFormatting.ITALIC + "稀有货币，将总共等价于160或160整数倍的咕咕原石的物品放入工作台可以合成出抽卡道具！");
 			break;
 		case ("item.compressed_gugu_primogems"):
 			tooltip.add(TextFormatting.GRAY+""+TextFormatting.ITALIC + "压缩稀有货币，内含9咕咕原石！");
@@ -137,6 +137,12 @@ public class ItemBase extends Item implements IHasModel{
 			break;
 		case ("item.gold_gugumun_note"):
 			tooltip.add(TextFormatting.GRAY+""+TextFormatting.ITALIC + "你这纸是金子做的还是颜料是金子做的？");
+			break;
+		case ("item.gugu_heart"):
+			tooltip.add(TextFormatting.GRAY+""+TextFormatting.ITALIC + "一颗咕咕心，材质逼真得令人发指。");
+			break;
+		case ("item.gugu_egg_shell"):
+			tooltip.add(TextFormatting.GRAY+""+TextFormatting.ITALIC + "一片洁白的蛋壳，可以用来炼咕咕钢（提升钢里的咕咕浓度）。");
 			break;
 		}
     }

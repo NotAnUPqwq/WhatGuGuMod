@@ -12,24 +12,24 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.world.World;
 
 public class UsefulFunc {
-	private static final Random r = new Random();
-	
-	public static float rand() {
-		return r.nextFloat();
+	public static float rand(World world) {
+		return world.rand.nextFloat();
 	}
 	
-	public static int randint(int bound) {
-		return r.nextInt(bound);
+	// 注意nextint提供的数字范围为 0 ~ (bound-1)
+	public static int randint(World world, int bound) {
+		return world.rand.nextInt(bound);
 	}
 	
 	public static int randint(Random rand, int bound) {
 		return rand.nextInt(bound);
 	}
 	
-	public static int randint(int min, int max) {
-		return randint(r, min, max);
+	public static int randint(World world,int min, int max) {
+		return randint(world.rand, min, max);
 	}
 	
 	public static int randint(Random rand, int min, int max) {

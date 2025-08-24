@@ -70,6 +70,7 @@ itemGroup.gugu_tab_creative=WhatGuGuMod for Creative
 // entities
 entity.entity_gugu.name=GuGu
 entity.entity_dark_gugu.name=DarkGuGu
+entity.entity_fake_gugu.name=FakeGuGu
 
 // advancements
 advancements.whatgugumod.root.title=WhatGuGuMod
@@ -80,6 +81,12 @@ advancements.whatgugumod.diary.title=GuGu Diary
 advancements.whatgugumod.diary.description=You have got my DIARY?! HOW?! NOOOOOOOO!qwq
 advancements.whatgugumod.limit.title=Limit Break
 advancements.whatgugumod.limit.description=Try to exceed stack limit with a item from WhatGuGuMod.(Nice try.)
+advancements.whatgugumod.fakegugu.title=GuGu Is The Imposter
+advancements.whatgugumod.fakegugu.description=Find a FakeGuGu and right click on it.
+advancements.whatgugumod.egg.title=GuGu Egg
+advancements.whatgugumod.egg.description=Get a GuGuEgg,hmmmm,egg.
+advancements.whatgugumod.cooked_egg.title=Cooked GuGu Egg
+advancements.whatgugumod.cooked_egg.description=qwq...
 
 // enchantments
 enchantment.constellation=Constellation
@@ -90,9 +97,11 @@ tooltip.whatgugumod.true_damage=True Damage
 
 // book
 book.whatgugumod.eula.title=GuGu EULA
-book.whatgugumod.eula.author=GuGu
+book.whatgugumod.eula.author=GuGu_Not_an_UP
 book.whatgugumod.diary.title=GuGu Diary
-book.whatgugumod.diary.author=GuGu
+book.whatgugumod.diary.author=GuGu_Not_an_UP
+book.whatgugumod.guide.title=GuGu Recipe Guide
+book.whatgugumod.guide.author=GuGu_Not_an_UP
 
 // added by python, must leave empty at last line!!!
 item.gugu_steel_axe.name=GuGu Steel Axe 
@@ -172,3 +181,6 @@ item.five_star_coin_gugu_boots.name=Five Star Coin GuGu Boots
 item.five_star_star.name=Five Star Star 
 item.item_penguins.name=Item Penguins 
 item.piece_of_penguins.name=Piece Of Penguins 
+item.gugu_heart.name=GuGu's Heart 
+item.cooked_gugu_egg.name=Cooked GuGu Egg 
+item.gugu_egg_shell.name=GuGu Egg Shell 

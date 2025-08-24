@@ -46,6 +46,21 @@
                     ]
                 }
             ]
+        },
+        {
+            "name": "gugu_heart_pool",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "whatgugumod:gugu_heart",
+                    "weight": 1
+                },
+                {
+                    "type": "empty",
+                    "weight": 99
+                }
+            ]
         }
     ]
 }

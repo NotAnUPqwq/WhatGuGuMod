@@ -36,14 +36,14 @@ public class CCCPGuGu extends ItemBase {
 	
 	@Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		worldIn.playSound(playerIn, playerIn.getPosition(), SoundEvents.ENTITY_SNOWMAN_SHOOT, SoundCategory.NEUTRAL, 1.0f, new Random().nextFloat()/2 + 0.8f);
-		ItemStack itemstack = playerIn.getHeldItem(handIn);
+		if (!worldIn.isRemote) {
+			worldIn.playSound(playerIn, playerIn.getPosition(), SoundEvents.ENTITY_SNOWMAN_SHOOT, SoundCategory.NEUTRAL, 1.0f, new Random().nextFloat()/2 + 0.8f);
+			ItemStack itemstack = playerIn.getHeldItem(handIn);
         
-        if (!playerIn.capabilities.isCreativeMode) {
-            itemstack.shrink(1);
-        }
+	        if (!playerIn.capabilities.isCreativeMode) {
+	            itemstack.shrink(1);
+	        }
 
-        if (!worldIn.isRemote) {
             EntityCCCPGuGu snowball = new EntityCCCPGuGu(worldIn, playerIn);
             snowball.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
             worldIn.spawnEntity(snowball);

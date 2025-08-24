@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.annotation.Nullable;
 
+import com.Not_an_UP.whatgugumod.entity.particle.EntityHeartParticle;
 import com.Not_an_UP.whatgugumod.init.ModItems;
 import com.Not_an_UP.whatgugumod.util.Reference;
 import com.google.common.collect.Sets;
@@ -13,6 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIFollowParent;
@@ -39,6 +41,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
 public class EntityGuGu extends EntityAnimal {
@@ -110,7 +113,7 @@ public class EntityGuGu extends EntityAnimal {
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
     {
 		if (!world.isRemote) {
-			if (player.getHeldItem(hand).isEmpty()) {
+			if (player.getHeldItem(EnumHand.MAIN_HAND).isEmpty()) {
 				if (this.rand.nextFloat() < 0.005) {
 					this.dropItem(ModItems.GUGU_COIN, 1);
 					world.playSound(null, this.getPosition(), SoundEvents.ENTITY_CHICKEN_AMBIENT, SoundCategory.NEUTRAL, 1.0f, 1.0f);
@@ -231,5 +234,17 @@ public class EntityGuGu extends EntityAnimal {
     public void setChickenJockey(boolean jockey)
     {
         this.chickenJockey = jockey;
+    }
+    
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+    	if (!world.isRemote){
+    		float getRand = this.rand.nextFloat();
+    		if (getRand < 0.2) {
+	    		EntityFakeGuGu fake = new EntityFakeGuGu(world);
+	    		fake.setPosition(this.posX+getRand/4, this.posY, this.posZ+getRand/4);;
+				world.spawnEntity(fake);
+	    	}
+    	}
+    	return super.onInitialSpawn(difficulty, livingdata);
     }
 }
