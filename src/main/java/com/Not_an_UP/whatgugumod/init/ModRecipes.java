@@ -2,6 +2,7 @@ package com.Not_an_UP.whatgugumod.init;
 
 import javax.annotation.Nonnull;
 
+import com.Not_an_UP.whatgugumod.enchantment.CarbonizationEnchantment;
 import com.Not_an_UP.whatgugumod.enchantment.ConstellationEnchantment;
 import com.Not_an_UP.whatgugumod.items.ItemGuGuStar;
 import com.Not_an_UP.whatgugumod.items.armor.ArmorBase;
@@ -66,13 +67,18 @@ public class ModRecipes {
         IRecipe recipeIntertwinedGuGu = new IntertwinedGuGuRecipe(
                 new ResourceLocation("whatgugumod", "intertwined_gugu_recipe"), // 配方唯一标识
                 new ItemStack(ModItems.INTERTWINED_GUGU) // 合成结果
-            ).setRegistryName(new ResourceLocation("whatgugumod", "diary_recipe"));
-        
+            ).setRegistryName(new ResourceLocation("whatgugumod", "intertwined_gugu_recipe"));
         
         eggOutput.addEnchantment(ConstellationEnchantment.INSTANCE, 6);
         IRecipe recipeEgg = new EggRecipe(
                 new ResourceLocation("whatgugumod", "egg_recipe") // 配方唯一标识
             ).setRegistryName(new ResourceLocation("whatgugumod", "egg_recipe"));
+        
+        carbonEggOutput.addEnchantment(CarbonizationEnchantment.INSTANCE, 1);
+        IRecipe recipeCarbonEgg = new CarbonEggRecipe(
+                new ResourceLocation("whatgugumod", "carbon_egg_recipe") // 配方唯一标识
+            ).setRegistryName(new ResourceLocation("whatgugumod", "carbon_egg_recipe"));
+        
         // 注册配方
         event.getRegistry().register(recipeBiggerChest);
         event.getRegistry().register(recipeBiggestChest);
@@ -82,6 +88,7 @@ public class ModRecipes {
         event.getRegistry().register(recipeDiary);
         event.getRegistry().register(recipeEgg);
         event.getRegistry().register(recipeIntertwinedGuGu);
+        event.getRegistry().register(recipeCarbonEgg);
         /* 咕咕为批量注册配方鏖战两小时，
          * 最终还是与自己和解，使用deepseek辅助 qwq...
          * 结果强如deepseek也解决不了我的问题qwq
@@ -533,6 +540,9 @@ public class ModRecipes {
     					return false;
     				}
     				if (stack.getItem() == ModItems.GUGU_EGG) {
+    					if (EnchantmentHelper.getEnchantmentLevel(ConstellationEnchantment.INSTANCE, stack) > 0) {
+    						return false;
+    					}
     					getStack[0] = true;
     				}else if (stack.getItem() == ModItems.GUGU_COIN) {
     					getStack[1] = true;
@@ -545,7 +555,15 @@ public class ModRecipes {
     	@Nonnull
         @Override
         public ItemStack getCraftingResult(InventoryCrafting inv) {
-    		return eggOutput;
+    		ItemStack stack = ItemStack.EMPTY;
+    		for (int i = 0; i < inv.getSizeInventory(); i++) {
+    			if (inv.getStackInSlot(i).getItem() == ModItems.GUGU_EGG) {
+    				stack = inv.getStackInSlot(i).copy();
+    				break;
+    			}
+    		}
+    		stack.addEnchantment(ConstellationEnchantment.INSTANCE, 6);
+    		return stack;
     	}
     	
         @Override
@@ -598,6 +616,59 @@ public class ModRecipes {
 				return 36;
 			}
 			return 0;
+		}
+		
+		// 不允许显示在JEI中
+	    @Override
+	    public boolean isDynamic() {
+	        return false;
+	    }
+	}
+	
+	private static final ItemStack carbonEggOutput = new ItemStack(ModItems.GUGU_EGG);
+    private static class CarbonEggRecipe extends ShapelessOreRecipe{
+		public CarbonEggRecipe(ResourceLocation group) {
+			super(group, carbonEggOutput, new ItemStack(ModItems.COAL_GUGU), new ItemStack(ModItems.GUGU_EGG));
+		}
+		
+		@Override
+	    public boolean matches(InventoryCrafting inv, World world) {
+			int count = 0;
+    		boolean[] getStack = new boolean[] {false,false};
+    		// 列表中的两项分别判断咕咕蛋、碳化咕咕是否存在。
+    		ItemStack stack;
+    		
+    		for (int i = 0; i < inv.getSizeInventory(); i++) {
+    			stack = inv.getStackInSlot(i);
+    			if (!stack.isEmpty()) {
+    				if (++count > 2) {
+    					return false;
+    				}
+    				if (stack.getItem() == ModItems.GUGU_EGG) {
+    					if (EnchantmentHelper.getEnchantmentLevel(CarbonizationEnchantment.INSTANCE, stack) > 0) {
+    						return false;
+    					}
+    					getStack[0] = true;
+    				}else if (stack.getItem() == ModItems.COAL_GUGU) {
+    					getStack[1] = true;
+    				}
+    			}
+    		}
+			return (getStack[0] & getStack[1]);
+		}
+		
+		@Nonnull
+	    @Override
+	    public ItemStack getCraftingResult(InventoryCrafting inv) {
+			ItemStack stack = ItemStack.EMPTY;
+    		for (int i = 0; i < inv.getSizeInventory(); i++) {
+    			if (inv.getStackInSlot(i).getItem() == ModItems.GUGU_EGG) {
+    				stack = inv.getStackInSlot(i).copy();
+    				break;
+    			}
+    		}
+    		stack.addEnchantment(CarbonizationEnchantment.INSTANCE, 1);
+    		return stack;
 		}
 		
 		// 不允许显示在JEI中

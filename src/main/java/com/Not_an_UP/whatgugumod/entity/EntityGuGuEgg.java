@@ -39,7 +39,12 @@ public class EntityGuGuEgg extends EntityEgg{
     		}
     		
     		for (int j = 0; j < i; j++) {
-        		EntityGuGu entitygugu = new EntityGuGu(this.world);
+    			EntityGuGu entitygugu;
+    			if (this.getTags().contains("carbon")){
+    				entitygugu = new EntityFakeGuGu(this.world);
+    			} else {
+    				entitygugu = new EntityGuGu(this.world);
+    			}
                 entitygugu.setGrowingAge(-24000);
                 entitygugu.setLocationAndAngles(this.posX + this.rand.nextFloat()/20, this.posY, this.posZ + this.rand.nextFloat()/20, this.rotationYaw, 0.0F);
                 this.world.spawnEntity(entitygugu);

@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.Not_an_UP.whatgugumod.enchantment.CarbonizationEnchantment;
 import com.Not_an_UP.whatgugumod.enchantment.ConstellationEnchantment;
 import com.Not_an_UP.whatgugumod.entity.EntityGuGuEgg;
 import net.minecraft.client.util.ITooltipFlag;
@@ -32,9 +33,6 @@ public class GuGuEgg extends ItemBase{
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		worldIn.playSound(playerIn, playerIn.getPosition(), SoundEvents.ENTITY_SNOWMAN_SHOOT, SoundCategory.NEUTRAL, 1.0f, new Random().nextFloat()/2 + 0.8f);
 		ItemStack itemStack = playerIn.getHeldItem(handIn);
-        boolean shiningEgg = false;
-		if (EnchantmentHelper.getEnchantmentLevel(ConstellationEnchantment.INSTANCE, itemStack) > 0)
-        	shiningEgg = true;
 		
         if (!playerIn.capabilities.isCreativeMode)
             itemStack.shrink(1);
@@ -42,8 +40,10 @@ public class GuGuEgg extends ItemBase{
         if (!worldIn.isRemote) {
             EntityGuGuEgg snowball = new EntityGuGuEgg(worldIn, playerIn);
             snowball.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-            if (shiningEgg)
+            if (EnchantmentHelper.getEnchantmentLevel(ConstellationEnchantment.INSTANCE, itemStack) > 0)
             	snowball.addTag("shining");
+            if (EnchantmentHelper.getEnchantmentLevel(CarbonizationEnchantment.INSTANCE, itemStack) > 0)
+            	snowball.addTag("carbon");
             worldIn.spawnEntity(snowball);
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));

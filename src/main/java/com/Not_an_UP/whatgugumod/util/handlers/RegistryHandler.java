@@ -1,5 +1,6 @@
 package com.Not_an_UP.whatgugumod.util.handlers;
 
+import com.Not_an_UP.whatgugumod.enchantment.CarbonizationEnchantment;
 import com.Not_an_UP.whatgugumod.enchantment.ConstellationEnchantment;
 import com.Not_an_UP.whatgugumod.entity.EntityInit;
 import com.Not_an_UP.whatgugumod.init.ModBlocks;
@@ -72,5 +73,6 @@ public class RegistryHandler {
 	@SubscribeEvent
     public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
         event.getRegistry().register(ConstellationEnchantment.INSTANCE);
+        event.getRegistry().register(CarbonizationEnchantment.INSTANCE);
     }
 }

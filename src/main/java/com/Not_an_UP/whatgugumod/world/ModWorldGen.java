@@ -54,7 +54,7 @@ public class ModWorldGen implements IWorldGenerator{
             }
         }
         
-        if (random.nextFloat() < 0.15) { // 15%的几率生成
+        if (random.nextFloat() < 0.1145) { // 11.45%的几率生成
         	int num = random.nextInt(2) + 2;
         	for (int i = 0; i < num; i++) {
         		generateGuGu(world, random, chunkX, chunkZ);
@@ -67,7 +67,7 @@ public class ModWorldGen implements IWorldGenerator{
         int z = chunkZ*16 + random.nextInt(16);
         int y = world.getHeight(x, z);
         EntityGuGu entity = new EntityGuGu(world);
-        entity.setPosition(x + random.nextInt(16), y, z + random.nextInt(16));
+        entity.setPosition(x, y, z);
         world.spawnEntity(entity);
 	}
 	

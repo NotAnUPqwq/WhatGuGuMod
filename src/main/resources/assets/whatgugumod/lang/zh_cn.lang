@@ -89,6 +89,7 @@ advancements.whatgugumod.cooked_egg.description=qwq……
 
 // 附魔
 enchantment.constellation=命之座
+enchantment.carbonization=碳化
 
 // 工具提示
 tooltip.whatgugumod.extra_speed=挖掘速度

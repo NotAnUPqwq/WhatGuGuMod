@@ -90,6 +90,7 @@ advancements.whatgugumod.cooked_egg.description=qwq...
 
 // enchantments
 enchantment.constellation=Constellation
+enchantment.carbonization=Carbonization
 
 // tooltip
 tooltip.whatgugumod.extra_speed=speed

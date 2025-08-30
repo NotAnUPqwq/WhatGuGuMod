@@ -22,7 +22,7 @@
         "items": [
           {
             "item": "minecraft:written_book",
-            "nbt": "{title:\"咕咕日记\",author:\"咕咕\",resolved:1b,pages:[\"{\\\"text\\\":\\\"正经人谁写日记啊？\\\"}\"]}"
+            "nbt": "{title:\"咕咕日记\",author:\"咕咕Not_an_UP\",resolved:1b,pages:[\"{\\\"text\\\":\\\"正经人谁写日记啊？\\\"}\"]}"
           }
         ]
       }

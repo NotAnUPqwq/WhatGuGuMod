@@ -153,8 +153,6 @@ public class EventHandler {
 			event.player.addTag("read_eula");
 		}
 	}
-	
-	
 
     // 玩家退出时清理多余数据
     @SubscribeEvent
@@ -164,57 +162,6 @@ public class EventHandler {
         playerLoginTimes.remove(player);
         nextMessageTimes.remove(player);
     }
-    
-//    @SubscribeEvent
-//    public static void onServerTick(TickEvent.ServerTickEvent event) {
-//        if (event.phase != TickEvent.Phase.END) return;
-//
-//        Iterator<Map.Entry<EntityPlayer, Queue<Pair<String, Integer>>>> iterator = EventHandler.messageQueues.entrySet().iterator();
-//        while (iterator.hasNext()) {
-//        	Map.Entry<EntityPlayer, Queue<Pair<String, Integer>>> entry = iterator.next();
-//            EntityPlayer player = entry.getKey();
-//            Queue<Pair<String, Integer>> messages = entry.getValue();
-//
-//            // 检查是否已等待20秒（20秒 = 20*20 ticks）
-//            if (player.world.getTotalWorldTime() - EventHandler.playerLoginTimes.get(player) < 0)
-//            	continue;
-//                
-//        	// 检查距离上条消息是否超过5秒（100 ticks）
-//            if (player.world.getTotalWorldTime() < EventHandler.nextMessageTimes.get(player)) 
-//            	continue;
-//                
-//        	if (!messages.isEmpty()) {
-//        		Pair<String, Integer> messagePair = messages.poll();
-//                player.sendMessage(new TextComponentString(messagePair.getLeft()));
-//                EventHandler.nextMessageTimes.put(player, player.world.getTotalWorldTime() + messagePair.getRight());
-//            } else {
-//                iterator.remove(); // 清理垃圾这一块
-//                EventHandler.playerLoginTimes.remove(player);
-//                EventHandler.nextMessageTimes.remove(player); 
-//            }
-//        }
-//        
-//        for (EntityPlayer getPlayer : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers()) {
-//	        if (EventHandler.isSendingMessage(getPlayer))
-//	        	return;
-//	        
-//	        if (getPlayer.world.rand.nextFloat() < 0.0001) {
-//	        	switch (getPlayer.world.rand.nextInt(3)) {
-//		        	case 0:
-//		        		EventHandler.sendSingleMessageLater(getPlayer, 100, "<Not_an_UP> 不知道说什么，还是发个qwq吧");
-//		        		break;
-//		        	case 1:
-//		        		EventHandler.sendSomeMessageLater(getPlayer, 100, Pair.of("<Not_an_UP> 现在写1.12.2模组的教程实在是太少了qwq", 80),
-//		        				                                          Pair.of("<Not_an_UP> 但是AI实在是太好用了你知道吗", 30),
-//		        				                                          Pair.of("<Not_an_UP> qwq", 0));
-//		        		break;
-//		        	default:
-//		        		EventHandler.sendSingleMessageLater(getPlayer, 40, "<Not_an_UP> qwq咕咕咕");
-//		        		break;
-//	        	}
-//	        }
-//	    }
-//    }
 	
     @SubscribeEvent
     public static void onPlayerChat(ServerChatEvent event) {
@@ -227,9 +174,9 @@ public class EventHandler {
                 !Minecraft.getMinecraft().getIntegratedServer().getPublic();
         
         // 示例：检测特定关键词
-        if (message.contains("我喜欢你") & event.getPlayer().getTags().contains("love_gugu_qwq")) {
+        if ((message.contains("我喜欢你") | message.contains("我爱你")) & event.getPlayer().getTags().contains("love_gugu_qwq")) {
         	sendSingleMessageLater(event.getPlayer(), 100, "<Not_an_UP> 哦，qwq");
-        }else if (message.contains("我喜欢你") & isSinglePlayer) {
+        }else if ((message.contains("我喜欢你")| message.contains("我爱你")) & isSinglePlayer) {
             sendMessageLater(event.getPlayer(), 200, new LinkedList<>(Arrays.asList(
             		Pair.of("<Not_an_UP> 什么，竟然是在这种时候吗qwq", 120),
             		Pair.of("<Not_an_UP> 明明我才刚来这个地方qwq就要说出这种话", 100),
@@ -239,15 +186,6 @@ public class EventHandler {
         	sendSingleMessageLater(event.getPlayer(), 20, "<Not_an_UP> qwq");
         }else {
         	sendSingleMessageLater(event.getPlayer(), 60, "<Not_an_UP> qwq");
-        }
-    }
-    
-	@SubscribeEvent
-    public static void onEntityRightClick(PlayerInteractEvent.EntityInteract event) {
-		if (event.getEntityPlayer().world.isRemote) {
-	        if (event.getEntityPlayer().getHeldItemMainhand().isEmpty() & event.getTarget() instanceof EntityFakeGuGu) {
-	            GuiJumpScare.trigger(); 
-	        }
         }
     }
 }
