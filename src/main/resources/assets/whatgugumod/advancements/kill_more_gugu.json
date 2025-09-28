@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "whatgugumod:gugu"
+    },
+    "title": {
+      "translate": "advancements.whatgugumod.killmoregugu.title"
+    },
+    "description": {
+      "translate": "advancements.whatgugumod.killmoregugu.description"
+    },
+    "frame": "task",  
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false 
+  },
+  "parent": "whatgugumod:kill_gugu",  
+  "criteria": {
+    "custom_trigger": {
+      "trigger": "minecraft:impossible"  
+    }
+  },
+  "rewards": {
+    "experience": 10
+  }
+}

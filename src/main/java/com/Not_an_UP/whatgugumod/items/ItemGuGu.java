@@ -28,8 +28,8 @@ public class ItemGuGu extends ItemBase{
 	@Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		if (!worldIn.isRemote) {
-			if (itemRand.nextFloat() < 0.001) {
-				playerIn.inventory.addItemStackToInventory(new ItemStack(ModItems.GUGU_COIN));
+			if (itemRand.nextFloat() < 0.02) {
+				playerIn.dropItem(ModItems.GUGU_COIN, 1);
 				worldIn.playSound(playerIn, playerIn.getPosition(), SoundEvents.ENTITY_CHICKEN_AMBIENT, SoundCategory.PLAYERS, 1.0f, 1.0f);
 				return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 			}

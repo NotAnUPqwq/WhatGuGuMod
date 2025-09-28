@@ -10,22 +10,27 @@ import java.util.Random;
 
 import org.apache.commons.lang3.tuple.Pair;
 
-import com.Not_an_UP.whatgugumod.entity.EntityFakeGuGu;
-import com.Not_an_UP.whatgugumod.gui.GuiJumpScare;
+import com.Not_an_UP.whatgugumod.data.GuGuKillData;
+import com.Not_an_UP.whatgugumod.entity.EntityGuGu;
 import com.Not_an_UP.whatgugumod.items.books.GuGuBookHandler;
 
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementProgress;
+import net.minecraft.advancements.PlayerAdvancements;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
@@ -90,6 +95,73 @@ public class EventHandler {
         }
 	}
 	
+	@SubscribeEvent
+    public static void onEntityKilled(LivingDeathEvent event) {
+        if (event.getEntity().getClass() == EntityGuGu.class && 
+            event.getSource().getTrueSource() instanceof EntityPlayer) {
+            
+            EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
+            GuGuKillData data = GuGuKillData.get(player.world);
+            
+            // 记录击杀
+            data.addKill(player.getUniqueID());
+            
+            int kills = data.getKills(player.getUniqueID());
+            
+            if (kills == 1 | kills == 10 | kills == 100) {
+	            if (player instanceof EntityPlayerMP) {
+					PlayerAdvancements advancements = ((EntityPlayerMP)player).getAdvancements();
+					
+					Advancement advancement;
+					if (kills == 1)
+						advancement = ((EntityPlayerMP)player).mcServer.getAdvancementManager().getAdvancement(new ResourceLocation("whatgugumod", "kill_gugu"));
+					else if (kills == 10)
+						advancement = ((EntityPlayerMP)player).mcServer.getAdvancementManager().getAdvancement(new ResourceLocation("whatgugumod", "kill_more_gugu"));
+					else 
+						advancement = ((EntityPlayerMP)player).mcServer.getAdvancementManager().getAdvancement(new ResourceLocation("whatgugumod", "kill_more_more_gugu"));
+					
+					if (advancement != null) {
+				        AdvancementProgress progress = advancements.getProgress(advancement);
+				        if (!progress.isDone()) {  // 防止重复触发
+				            for (String criterion : progress.getRemaningCriteria()) {
+				                advancements.grantCriterion(advancement, criterion);  // 完成条件
+				            }
+				        }
+				    }
+				}
+            }
+        }
+    }
+	
+	@SubscribeEvent
+	public static void onAdvancementGet(AdvancementEvent event) {
+		// 没写完
+		Advancement advancement = event.getAdvancement();
+		
+		if (advancement.getId().equals(new ResourceLocation("whatgugumod","gugu_heart"))) {
+			EntityPlayer player = event.getEntityPlayer();
+			
+			Pair<String,Integer> killPair;
+			int killNum = GuGuKillData.get(player.world).getKills(player.getUniqueID());
+			if (killNum == 0) {
+				killPair = Pair.of("<Not_an_UP> 你竟然一只咕咕都没杀欸qwq", 120);
+			}else {
+				killPair = Pair.of("<Not_an_UP> 我看你杀了" + killNum + "只咕咕qwq", 120);
+			}
+			
+			sendSomeMessageLater(player, 200,
+					Pair.of("<Not_an_UP> qwq哇，你拿到咕咕心了", 120),
+					killPair,
+					Pair.of("<Not_an_UP> 嗯……我听说有种召唤仪式", 180),
+					Pair.of("<Not_an_UP> 在地上放个压缩咕咕块，再对着它用咕咕心", 90),
+					Pair.of("<Not_an_UP> 就能召唤咕咕神qwq", 170),
+					// TODO 更新咕咕神之后把这段删了
+					Pair.of("<Not_an_UP> 但是我好像还没写咕咕神的召唤代码qwq", 120),
+					Pair.of("<Not_an_UP> 所以等咕咕模组下次更新吧", 20),
+					Pair.of("<Not_an_UP> qwq", 40));
+		}
+	}
+	
 	public static final Map<EntityPlayer, Queue<Pair<String, Integer>>> messageQueues = new HashMap<>(); //new 消息+延迟
 	public static final Map<EntityPlayer, Long> playerLoginTimes = new HashMap<>();
 	public static final Map<EntityPlayer, Long> nextMessageTimes = new HashMap<>();
@@ -97,8 +169,10 @@ public class EventHandler {
 	public static boolean isSendingMessage(EntityPlayer player) {
 		return nextMessageTimes.get(player) != null;
 	}
-	
-    public static void sendSingleMessageLater(EntityPlayer player, int startTime, String message) {
+    
+    public static void sendSingleMessageLater(EntityPlayer player, int startTime, String message, boolean wait) {
+    	if (wait & isSendingMessage(player))
+    		return;
     	Queue<Pair<String, Integer>> messages = new LinkedList<>(Arrays.asList(
     			Pair.of(message, 0)
     			));
@@ -137,7 +211,7 @@ public class EventHandler {
 		            Pair.of("<Not_an_UP> 咕咕推荐单人游玩本模组qwq", 120),      
 		            Pair.of("<Not_an_UP> 主要是因为我还没测试多人模式会有哪些bug", 30),
 		            Pair.of("<Not_an_UP> qwq", 110),
-		            Pair.of("<Not_an_UP> 你手里应该有本书，随便看看就得了", 80),
+		            Pair.of("<Not_an_UP> 你手里应该有些书，随便看看就得了", 80),
 		            Pair.of("<Not_an_UP> nobody cares", 30),
 		            Pair.of("<Not_an_UP> qwq", 80),
 		            Pair.of("<Not_an_UP> 祝你玩得开心qwq", 300),
@@ -168,24 +242,37 @@ public class EventHandler {
         if (isSendingMessage(event.getPlayer()))
         	return;
     	
+        EntityPlayer player = event.getPlayer();
     	String message = event.getMessage();
         
         boolean isSinglePlayer = Minecraft.getMinecraft().isSingleplayer() && 
                 !Minecraft.getMinecraft().getIntegratedServer().getPublic();
         
         // 示例：检测特定关键词
-        if ((message.contains("我喜欢你") | message.contains("我爱你")) & event.getPlayer().getTags().contains("love_gugu_qwq")) {
-        	sendSingleMessageLater(event.getPlayer(), 100, "<Not_an_UP> 哦，qwq");
-        }else if ((message.contains("我喜欢你")| message.contains("我爱你")) & isSinglePlayer) {
-            sendMessageLater(event.getPlayer(), 200, new LinkedList<>(Arrays.asList(
+        if ((message.contains("我喜欢你") | message.contains("我爱你") | message.toLowerCase().contains("i love you")) & player.getTags().contains("love_gugu_qwq")) {
+        	sendSingleMessageLater(player, 100, "<Not_an_UP> qwq...", false);
+        }else if ((message.contains("我喜欢你")| message.contains("我爱你") | message.toLowerCase().contains("i love you")) & isSinglePlayer) {
+        	if (player instanceof EntityPlayerMP) {
+				PlayerAdvancements advancements = ((EntityPlayerMP)player).getAdvancements();
+				Advancement advancement = ((EntityPlayerMP)player).mcServer.getAdvancementManager().getAdvancement(new ResourceLocation("whatgugumod", "love_gugu"));
+				if (advancement != null) {
+			        AdvancementProgress progress = advancements.getProgress(advancement);
+			        if (!progress.isDone()) {  // 防止重复触发
+			            for (String criterion : progress.getRemaningCriteria()) {
+			                advancements.grantCriterion(advancement, criterion);  // 完成条件
+			            }
+			        }
+			    }
+			}
+        	sendMessageLater(player, 200, new LinkedList<>(Arrays.asList(
             		Pair.of("<Not_an_UP> 什么，竟然是在这种时候吗qwq", 120),
             		Pair.of("<Not_an_UP> 明明我才刚来这个地方qwq就要说出这种话", 100),
             		Pair.of("<Not_an_UP> qwq你不会只是想知道我会说什么吧", 0))));
-            event.getPlayer().addTag("love_gugu_qwq");
+        	player.addTag("love_gugu_qwq");
         }else if (message.contains("qwq")){
-        	sendSingleMessageLater(event.getPlayer(), 20, "<Not_an_UP> qwq");
+        	sendSingleMessageLater(player, 20, "<Not_an_UP> qwq", false);
         }else {
-        	sendSingleMessageLater(event.getPlayer(), 60, "<Not_an_UP> qwq");
+        	sendSingleMessageLater(player, 60, "<Not_an_UP> qwq", false);
         }
     }
 }

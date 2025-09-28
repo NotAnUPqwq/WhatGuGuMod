@@ -8,11 +8,12 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import com.Not_an_UP.whatgugumod.entity.EntityFakeGuGu;
 import com.Not_an_UP.whatgugumod.gui.GuiJumpScare;
+import com.Not_an_UP.whatgugumod.util.UsefulFunc;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -22,12 +23,23 @@ import net.minecraftforge.fml.relauncher.Side;
 public class ClientEventHandler {
 	@SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {
-        if (event.phase != TickEvent.Phase.END) return;
+		if (event.phase != TickEvent.Phase.END) return;
 
+		EntityPlayer getPlayer = Minecraft.getMinecraft().player;
+		
         Iterator<Map.Entry<EntityPlayer, Queue<Pair<String, Integer>>>> iterator = EventHandler.messageQueues.entrySet().iterator();
         while (iterator.hasNext()) {
         	Map.Entry<EntityPlayer, Queue<Pair<String, Integer>>> entry = iterator.next();
             EntityPlayer player = entry.getKey();
+            
+            try {
+	            if (!getPlayer.equals(player)) {
+	            	continue;
+	            }
+	        }catch (NullPointerException e) {
+	        	continue;
+	        }
+            
             Queue<Pair<String, Integer>> messages = entry.getValue();
 
             // 检查是否已等待20秒（20秒 = 20*20 ticks）
@@ -49,26 +61,32 @@ public class ClientEventHandler {
             }
         }
         
-        for (EntityPlayer getPlayer : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers()) {
-	        if (EventHandler.isSendingMessage(getPlayer))
+        if (EventHandler.isSendingMessage(getPlayer))
 	        	return;
-	        
-	        if (getPlayer.world.rand.nextFloat() < 0.00005) {
-	        	switch (getPlayer.world.rand.nextInt(3)) {
+        try {
+	        if (UsefulFunc.myGuGuRandom.nextFloat() < 0.00005) {
+	        	switch (UsefulFunc.myGuGuRandom.nextInt(4)) {
 		        	case 0:
-		        		EventHandler.sendSingleMessageLater(getPlayer, 100, "<Not_an_UP> 不知道说什么，还是发个qwq吧");
+		        		EventHandler.sendSingleMessageLater(getPlayer, 100, "<Not_an_UP> 不知道说什么，还是发个qwq吧", false);
 		        		break;
 		        	case 1:
 		        		EventHandler.sendSomeMessageLater(getPlayer, 100, Pair.of("<Not_an_UP> 现在写1.12.2模组的教程实在是太少了qwq", 80),
 		        				                                          Pair.of("<Not_an_UP> 但是AI实在是太好用了你知道吗", 30),
 		        				                                          Pair.of("<Not_an_UP> qwq", 0));
 		        		break;
+		        	case 2:
+		        		EventHandler.sendSomeMessageLater(getPlayer, 60, Pair.of("<Not_an_UP> 你喜欢末影人吗qwq", 60),
+		        				                                          Pair.of("<Not_an_UP> 我觉得他挺可爱的", 30),
+		        				                                          Pair.of("<Not_an_UP> qwq", 0));
+		        		break;
 		        	default:
-		        		EventHandler.sendSingleMessageLater(getPlayer, 40, "<Not_an_UP> qwq咕咕咕");
+		        		EventHandler.sendSingleMessageLater(getPlayer, 40, "<Not_an_UP> qwq咕咕咕", false);
 		        		break;
 	        	}
 	        }
-	    }
+        }catch (NullPointerException e){
+        	
+        }
     }
 	
 	@SubscribeEvent

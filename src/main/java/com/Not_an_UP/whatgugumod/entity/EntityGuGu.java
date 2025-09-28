@@ -114,11 +114,11 @@ public class EntityGuGu extends EntityAnimal {
     {
 		if (!world.isRemote) {
 			if (player.getHeldItem(EnumHand.MAIN_HAND).isEmpty()) {
-				if (this.rand.nextFloat() < 0.005) {
+				if (this.rand.nextFloat() < 0.05) {
 					this.dropItem(ModItems.GUGU_COIN, 1);
 					world.playSound(null, this.getPosition(), SoundEvents.ENTITY_CHICKEN_AMBIENT, SoundCategory.NEUTRAL, 1.0f, 1.0f);
 					Entity particle = new EntityHeartParticle(world);
-					particle.setPosition(posX+0.5, posY, posZ+0.5);
+					particle.setPosition(posX, posY, posZ);
 					world.spawnEntity(particle);
 				}
 			}

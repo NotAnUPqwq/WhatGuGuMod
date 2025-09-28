@@ -1,0 +1,35 @@
+{
+  "parent": "whatgugumod:kill_more_more_gugu",
+  "display": {
+    "icon": {
+      "item": "whatgugumod:gugu_heart"
+    },
+    "title": {
+      "translate": "advancements.whatgugumod.gugu_heart.title"
+    },
+    "description": {
+      "translate": "advancements.whatgugumod.gugu_heart.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "obtained_gugu": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "whatgugumod:gugu_heart"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "obtained_gugu"
+    ]
+  ]
+}

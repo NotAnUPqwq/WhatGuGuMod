@@ -21,8 +21,8 @@ public class EntityParticleBase extends Entity{
         
         for (int i = 0; i < 10; i++) {
         	// 随机偏移粒子的位置
-        	double offsetX = this.rand.nextDouble(); // X方向随机偏移
-        	double offsetZ = this.rand.nextDouble(); // Z方向随机偏移
+        	double offsetX = this.rand.nextDouble() - 0.5; // X方向随机偏移
+        	double offsetZ = this.rand.nextDouble() - 0.5; // Z方向随机偏移
         	world.spawnParticle(this.type, posX+offsetX, posY+0.5, posZ+offsetZ, 0, 5, 0);
         }
         

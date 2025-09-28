@@ -15,6 +15,8 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 
 public class UsefulFunc {
+	public static Random myGuGuRandom = new Random();
+	
 	public static float rand(World world) {
 		return world.rand.nextFloat();
 	}

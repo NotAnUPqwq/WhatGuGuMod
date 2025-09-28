@@ -160,7 +160,7 @@ public class EntityDarkGuGu extends EntityMob {
 					}
 					world.playSound(null, this.getPosition(), SoundEvents.ENTITY_CHICKEN_HURT, SoundCategory.NEUTRAL, 1.0f, 0.9f + rand.nextFloat()/5);
 					Entity particle = new EntityAngryParticle(world);
-					particle.setPosition(posX-0.5, posY, posZ-0.5);
+					particle.setPosition(posX, posY, posZ);
 					world.spawnEntity(particle);
 					this.attackEntityFrom(DamageSource.GENERIC, 5);
 				}
